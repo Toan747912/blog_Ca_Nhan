@@ -1,0 +1,34 @@
+# Ngôn ngữ và tiêu đề website
+
+# QUAN TRỌNG: Dòng 'baseURL' này dùng cho lúc build cuối cùng để deploy.
+# Hãy comment (thêm dấu #) ở đầu dòng này khi chạy máy chủ local (hugo server).
+# Khi nào build để deploy lên GitHub Pages (lệnh 'hugo'), hãy bỏ dấu # và điền link GitHub Pages của bạn vào.
+baseURL = "https://your-github-username.github.io/"
+
+languageCode = "vi-VN"
+title = "[Tên Blog Của Bạn]"
+
+# Kích hoạt Menu cho Trang Chủ và Blog
+sectionPagesMenu = "main"
+
+[menu]
+  [[menu.main]]
+    name = "Trang Chủ"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+
+# Nơi lưu trữ thông tin cá nhân để layout có thể gọi ra
+[params]
+  author = "[Tên Của Bạn]"
+  description = "Chào mừng đến với blog của tôi! Tôi là sinh viên [Ngành học/Trường học] đam mê chia sẻ kiến thức về lập trình mạng, đặc biệt là với Java và JavaScript."
+  
+  # Các liên kết mạng xã hội
+  github = "https://github.com/[Link Github Của Bạn]"
+  linkedin = "https://linkedin.com/in/[Link LinkedIn Của Bạn]"
+  
+  # Ảnh đại diện profile
+  avatar = "https://placehold.co/200x200/e2e8f0/333?text=[Ảnh+Của+Bạn]"

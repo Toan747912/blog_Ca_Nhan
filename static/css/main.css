@@ -1,0 +1,93 @@
+/* Tệp CSS này sẽ được liên kết trong layouts/_default/baseof.html
+  Nó chứa các style tùy chỉnh không có trong Tailwind và style cho nội dung Markdown.
+*/
+
+/* --- Cấu hình Tailwind --- */
+/* Vì chúng ta đang dùng link CDN, chúng ta không thể dùng @tailwind.
+  Thay vào đó, tệp HTML (baseof.html) sẽ tải Tailwind qua thẻ <script>.
+  Tệp này chỉ dùng để bổ sung các style mà Tailwind không tự động áp dụng.
+*/
+
+/* --- Styling cho nội dung Markdown (Nội dung bài viết chi tiết) --- */
+
+/* Thêm class 'prose' và 'dark:prose-invert' vào thẻ <article> 
+  trong 'layouts/_default/single.html' để Tailwind tự động áp dụng
+  style cho các thẻ h1, h2, p, code, v.v. được sinh ra từ Markdown.
+
+  Chúng ta thêm các style bổ sung ở đây nếu cần.
+*/
+
+/* Tùy chỉnh cho khối code (code block) trong bài viết,
+  giúp nó nổi bật hơn.
+*/
+.prose pre,
+.prose-invert pre {
+  background-color: #f3f4f6; /* Màu nền xám nhạt cho code block ở chế độ sáng */
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem; /* bo góc */
+  padding: 1rem;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu code quá dài */
+}
+
+/* Chế độ tối cho code block */
+.dark .prose-invert pre {
+  background-color: #1f2937; /* Màu nền xám đậm cho code block ở chế độ tối */
+  border-color: #374151;
+}
+
+/* Tùy chỉnh cho code inline (`code`) */
+.prose :where(code):not(:where(pre, pre *)),
+.prose-invert :where(code):not(:where(pre, pre *)) {
+  background-color: #fee2e2; /* Màu nền đỏ nhạt (cho Java) */
+  color: #b91c1c; /* Màu chữ đỏ đậm */
+  border-radius: 0.25rem;
+  padding: 0.2em 0.4em;
+  font-weight: 500;
+}
+body {
+    border: 5px solid red ;
+}
+
+/* Chế độ tối cho code inline */
+.dark .prose-invert :where(code):not(:where(pre, pre *)) {
+  background-color: #312e81; /* Màu nền tím đậm */
+  color: #a5b4fc; /* Màu chữ tím nhạt */
+}
+
+/* Bạn có thể thêm style cho các thẻ JavaScript nếu muốn phân biệt */
+/* (Điều này đòi hỏi xử lý nâng cao trong HUGO, tạm thời dùng chung 1 style) */
+
+
+/* --- Các hiệu ứng bổ sung --- */
+
+/* Hiệu ứng mượt mà khi chuyển đổi dark mode */
+body, 
+header, 
+main,
+footer,
+.dark-mode-toggle {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Thêm hiệu ứng cho các icon mạng xã hội khi hover */
+.social-link svg {
+  transition: transform 0.2s ease-in-out;
+}
+.social-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* Thêm hiệu ứng cho thẻ bài viết khi hover (từ prototype) */
+.blog-card-hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.blog-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .blog-card-hover:hover {
+   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
