@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" class="">
+<html lang="{{ .Site.LanguageCode }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +8,35 @@
     
     <!-- Tải Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tải font Inter -->
+    <script>
+        // Cấu hình Tailwind để kích hoạt Dark Mode bằng class 'dark'
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Màu cho Chế độ Tối
+                        'dark-bg': '#0f172a', // (Nền chính - Slate 900)
+                        'dark-card': '#1e293b', // (Nền thẻ - Slate 800)
+                        'dark-border': '#334155', // (Viền - Slate 700)
+                        'dark-text-primary': '#f1f5f9', // (Chữ chính - Slate 100)
+                        'dark-text-secondary': '#94a3b8', // (Chữ phụ - Slate 400)
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Font Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tải CSS tùy chỉnh từ /static/css/main.css -->
-     <link rel="stylesheet" href="{{ "/css/main.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "/css/main.css" | relURL }}">
 
 </head>
-<body class="antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <div class="flex flex-col min-h-screen">
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
         
         <!-- Gọi partial header -->
         {{ partial "header.html" . }}
@@ -39,86 +56,3 @@
     
 </body>
 </html>
-
-
----
-
-**Tệp 3: Partial Header**
-Phần header và menu điều hướng.
-
-
-http://googleusercontent.com/immersive_entry_chip/1
-
----
-
-**Tệp 4: Partial Footer**
-Phần chân trang.
-
-
-http://googleusercontent.com/immersive_entry_chip/2
-
----
-
-**Tệp 5: Layout Trang Chủ**
-Đây là layout cho trang chủ (`/`), chứa profile và thành tích.
-
-
-http://googleusercontent.com/immersive_entry_chip/3
-
----
-
-**Tệp 6: Layout Trang Blog (Danh sách bài viết)**
-Đây là layout cho trang `/blog`, sẽ tự động lặp và hiển thị 9 bài viết của bạn.
-
-
-http://googleusercontent.com/immersive_entry_chip/4
-
----
-
-**Tệp 7: Layout Thẻ Bài Viết (Summary)**
-Đây là layout cho *một* thẻ bài viết, được `list.html` gọi để lặp lại.
-
-
-http://googleusercontent.com/immersive_entry_chip/5
-
----
-
-**Tệp 8: Layout Bài Viết Chi Tiết**
-Khi người dùng nhấp vào một thẻ bài viết, họ sẽ thấy trang này.
-
-
-http://googleusercontent.com/immersive_entry_chip/6
-
----
-
-**Tệp 9: Tệp CSS Tùy Chỉnh**
-Nơi chứa các style CSS từ prototype và style cho nội dung markdown.
-
-
-http://googleusercontent.com/immersive_entry_chip/7
-
----
-
-**Tệp 10: Tệp JavaScript**
-Chỉ chứa code cho Dark Mode, vì HUGO đã xử lý việc chuyển trang.
-
-
-http://googleusercontent.com/immersive_entry_chip/8
-
----
-
-**Tệp 11: Bài Viết Mẫu (Markdown)**
-Đây là cách bạn sẽ viết 9 bài post. Đặt tệp này trong `content/blog/`.
-
-
-http://googleusercontent.com/immersive_entry_chip/9
-
-### Các bước cuối cùng:
-
-1.  **Tạo 8 bài viết còn lại:** Sao chép `bai-1-socket-java.md`, đổi tên (ví dụ: `bai-2-nodejs-http.md`) và quan trọng nhất là thay đổi nội dung "front matter" (phần `---` ở đầu) và nội dung markdown bên dưới.
-2.  **Chạy máy chủ Hugo:** Mở terminal trong thư mục `do-an-blog` và gõ lệnh:
-    ```bash
-    hugo server -D
-    3.  **Xem kết quả:** Mở trình duyệt và truy cập `http://localhost:1313/`. Bạn sẽ thấy trang web của mình hoạt động, có thể chuyển qua lại giữa Trang Chủ và Blog, và nhấp vào xem chi tiết bài viết.
-
-Chúc bạn hoàn thành đồ án thành công!

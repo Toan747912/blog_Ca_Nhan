@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        <!-- Cột chính cho nội dung bài viết -->
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                {{ .Title }}
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+                <span>&middot;</span>
+                {{ with .Params.categories }}
+                <span>{{ index . 0 }}</span>
+                {{ end }}
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                {{ .Content }}
+            </div>
+        </article>
+
+        <!-- Cột phải cho Mục lục (Table of Contents) -->
+        <!-- Chỉ hiển thị trên bài viết dài và có mục lục -->
+        {{ if and (gt .WordCount 400) (.TableOfContents) }}
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    {{ .TableOfContents }}
+                </nav>
+            </div>
+        </aside>
+        {{ end }}
+
+    </div>
+</div>
+{{ end }}
+
+

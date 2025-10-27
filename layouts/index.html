@@ -3,9 +3,11 @@
     <div class="flex flex-col md:flex-row items-center md:space-x-12">
         <!-- Ảnh đại diện (lấy từ hugo.toml) -->
         <div class="flex-shrink-0 mb-8 md:mb-0">
-            <img class="h-48 w-48 rounded-full object-cover shadow-lg" 
-                 src="{{ "/images/Avatar.jpg" | relURL}}" 
-                 alt="Ảnh đại diện của {{ "/images/Avatar.jpg" | relURL }}">
+            <a href="{{ "/about" | relURL }}" class="block rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl">
+                <img class="h-69 w-64 rounded-full object-cover shadow-lg" 
+                     src="{{ "/images/Avatar.jpg" | relURL}}" 
+                     alt="Ảnh đại diện của {{ .Site.Params.author }}">
+            </a>
         </div>
         
         <!-- Thông tin Profile (lấy từ hugo.toml) -->
@@ -17,7 +19,7 @@
                 Lập trình viên Java & JavaScript
             </p>
             <p class="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-xl">
-                {{ .Site.Params.description }}
+                {{ .Site.Params.description | safeHTML }}
             </p>
             
             <!-- Liên kết Mạng xã hội (lấy từ hugo.toml) -->
@@ -38,39 +40,72 @@
         </div>
     </div>
 
-    <!-- PHẦN THÀNH TÍCH (Bạn tự điền thông tin trực tiếp ở đây) -->
+    <!-- PHẦN THÀNH TÍCH -->
     <div class="mt-20">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-10">
-            Thành tích & Giải thưởng
+            Chứng nhận
         </h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Thành tích 1 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4">
-                <div class="flex-shrink-0">
-                    <img class="h-12 w-12 rounded-md object-cover" 
-                         src="https://placehold.co/100x100/facc15/333?text=Giải" 
-                         alt="Ảnh đại diện cho [Tên Giải Thưởng]">
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">[Tên Giải Thưởng]</h3>
-                    <p class="mt-1 text-gray-600 dark:text-gray-300">[Tên Cuộc Thi hoặc Tổ Chức]</p>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">[Năm đạt được, ví dụ: 2024]</p>
+            <div data-pdf-src="{{ "/images/Certificate/NetworkingBasics.pdf" | relURL }}" class="certificate-item block hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4 h-full">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-md object-cover" 
+                             src="{{ "/images/Certificate/networking-basics.png" | relURL}}"  
+                             alt="Ảnh đại diện cho Networking basics">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Networking basics</h3>
+                        <p class="mt-1 text-gray-600 dark:text-gray-300">Cisco Networking Academy</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sep 19, 2025</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Thành tích 2 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4">
-                <div class="flex-shrink-0">
-                    <img class="h-12 w-12 rounded-md object-cover" 
-                         src="https://placehold.co/100x100/60a5fa/white?text=C.Chỉ" 
-                         alt="Ảnh đại diện cho [Tên Chứng Chỉ]">
+            <div data-pdf-src="{{ "/images/Certificate/JavaScriptEssentials1.pdf" | relURL }}" class="certificate-item block hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4 h-full">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-md object-cover" 
+                             src="{{ "/images/Certificate/javascript-essentials-1.png" | relURL}}"  
+                             alt="Ảnh đại diện cho JavaScript Essentials 1">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">JavaScript Essentials 1</h3>
+                        <p class="mt-1 text-gray-600 dark:text-gray-300">Cisco Networking Academy</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sep 25, 2025</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">[Tên Chứng Chỉ]</h3>
-                    <p class="mt-1 text-gray-600 dark:text-gray-300">[Tổ chức cấp, ví dụ: Oracle, AWS, ...]</p>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">[Ngày cấp]</p>
+            </div>
+
+            <!-- Thành tích 3 -->
+            <div data-pdf-src="{{ "/images/Certificate/JavaScriptEssentials2.pdf" | relURL }}" class="certificate-item block hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4 h-full">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-md object-cover" 
+                             src="{{ "/images/Certificate/javascript-essentials-2.png" | relURL}}"  
+                             alt="Ảnh đại diện cho JavaScript Essentials 2">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">JavaScript Essentials 2</h3>
+                        <p class="mt-1 text-gray-600 dark:text-gray-300">Cisco Networking Academy</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Oct 13, 2025</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Modal -->
+    <div id="pdf-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-2xl w-[95vw] h-[95vh] max-w-none flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b dark:border-gray-700">
+                <h3 id="pdf-modal-title" class="text-lg font-semibold text-gray-900 dark:text-white">Certificate Viewer</h3>
+                <button id="close-modal" class="text-3xl font-bold text-gray-500 hover:text-gray-900 dark:hover:text-white">&times;</button>
+            </div>
+            <div class="flex-grow p-2">
+                <iframe id="pdf-iframe" src="" class="w-full h-full" frameborder="0"></iframe>
             </div>
         </div>
     </div>

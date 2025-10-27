@@ -1,0 +1,45 @@
+{{ $paginator := .Paginator }}
+
+{{ if gt $paginator.TotalPages 1 }}
+<div class="flex justify-center items-center space-x-1 sm:space-x-2 text-base">
+
+    {{/* Nút Trang Trước */}}
+    {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+            &laquo; Trang trước
+        </a>
+    {{ else }}
+        <span class="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 rounded-md cursor-not-allowed">
+            &laquo; Trang trước
+        </span>
+    {{ end }}
+
+    {{/* Các nút số trang */}}
+    <div class="hidden sm:flex items-center space-x-1">
+    {{ range $paginator.Pagers }}
+        {{ if eq . $paginator }}
+            {{/* Trang hiện tại */}}
+            <span class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md">
+                {{ .PageNumber }}
+            </span>
+        {{ else }}
+            {{/* Các trang khác */}}
+            <a href="{{ .URL }}" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                {{ .PageNumber }}
+            </a>
+        {{ end }}
+    {{ end }}
+    </div>
+
+    {{/* Nút Trang Sau */}}
+    {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+            Trang sau &raquo;
+        </a>
+    {{ else }}
+        <span class="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 rounded-md cursor-not-allowed">
+            Trang sau &raquo;
+        </span>
+    {{ end }}
+</div>
+{{ end }}
