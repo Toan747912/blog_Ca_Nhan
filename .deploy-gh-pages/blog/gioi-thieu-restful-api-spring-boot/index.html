@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56079&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Nâng cấp Đường ống: Giới thiệu REST API và xây dựng API đầu tiên với Spring Boot | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                Nâng cấp Đường ống: Giới thiệu REST API và xây dựng API đầu tiên với Spring Boot
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>Java</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p>Ở các bài trước, chúng ta đã học cách &ldquo;nói chuyện&rdquo; ở mức độ thấp (Socket). Giờ là lúc để &ldquo;nâng cấp&rdquo; lên một kiến trúc cấp cao hơn, nơi chúng ta không còn lo về <code>InputStream</code> hay <code>DatagramPacket</code>, mà tập trung vào logic nghiệp vụ.</p>
+<p>Chào mừng bạn đến với <strong>RESTful API</strong>!</p>
+<h3 id="1"><em>1. &ldquo;Vòi nước&rdquo; REST là gì?</em></h3>
+<p>REST (REpresentational State Transfer) không phải là một ngôn ngữ hay công cụ. Nó là một <strong>&ldquo;phong cách thiết kế&rdquo;</strong> hay một bộ quy tắc để thiết kế các &ldquo;vòi nước&rdquo; (API) sao cho chúng thật đơn giản, dễ hiểu và dễ sử dụng.</p>
+<p>Hãy tưởng tượng Server của bạn là một <strong>Nhà hàng 5 sao</strong> 🧑‍🍳 và Client (ứng dụng web, app di động) là <strong>Thực khách</strong>.</p>
+<p>REST chính là cuốn <strong>Thực đơn (Menu)</strong> 📜 của nhà hàng đó.</p>
+<p>Một cuốn thực đơn tốt (RESTful) phải:</p>
+<ul>
+<li><strong>Tách biệt (Client-Server):</strong> Người phục vụ (Server) và Thực khách (Client) là hai bên riêng biệt. Thực khách không cần biết bếp (database) hoạt động thế nào, chỉ cần biết gọi món.</li>
+<li><strong>Không trạng thái (Stateless):</strong> Đây là quy tắc <strong>VÀNG</strong>. Người phục vụ (Server) bị &ldquo;mất trí nhớ ngắn hạn&rdquo;. Mỗi lần bạn gọi món (mỗi request), bạn phải cung cấp đầy đủ thông tin.
+<ul>
+<li><strong>Ví dụ tệ (Stateful):</strong> &ldquo;Cho tôi món như lần trước.&rdquo; -&gt; Server sẽ: &ldquo;Tôi không nhớ lần trước là gì?!&rdquo;</li>
+<li><strong>Ví dụ tốt (Stateless):</strong> &ldquo;Cho tôi 1 suất Phở Bò (ID: 123), giao đến bàn số 5 (Token: abc).&rdquo;</li>
+</ul>
+</li>
+<li><strong>Lợi ích:</strong> Vì Server không cần &ldquo;nhớ&rdquo; bạn, nó có thể dễ dàng phục vụ hàng ngàn thực khách cùng lúc (dễ dàng scale).</li>
+<li><strong>Dùng &ldquo;Tài nguyên&rdquo; (Resources):</strong> Mọi thứ trong thực đơn đều là một &ldquo;món ăn&rdquo; (Tài nguyên).
+<ul>
+<li>Tài nguyên là <strong>danh từ</strong>, không phải động từ.</li>
+<li>Ví dụ: <code>/users</code> (danh sách người dùng), <code>/products/45</code> (sản phẩm có ID 45).</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-ngôn-ngữ-của"><em>2. Ngôn ngữ của &ldquo;Thực đơn&rdquo; (Các phương thức HTTP)</em></h3>
+<p>HTTP không chỉ có <code>GET</code> (tải trang web). Nó là bộ <strong>động từ</strong> 🗣️ mà Thực khách (Client) dùng để ra lệnh cho Người phục vụ (Server) về một &ldquo;món ăn&rdquo; (Resource).</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Động từ</th>
+          <th style="text-align: left">Ý nghĩa (Bạn nói với phục vụ)</th>
+          <th style="text-align: left">Ví dụ (Bạn nói với Server)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>GET (LẤY)</strong></td>
+          <td style="text-align: left">&ldquo;Cho tôi XEM thông tin món Phở Bò.&rdquo;</td>
+          <td style="text-align: left"><code>GET /users/123</code> (Cho tôi xem thông tin user 123)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>POST (TẠO MỚI)</strong></td>
+          <td style="text-align: left">&ldquo;THÊM một món Phở Gà mới vào hóa đơn của tôi.&rdquo;</td>
+          <td style="text-align: left"><code>POST /users</code> (Tạo một user mới. Dữ liệu user ở trong túi hàng)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>PUT (CẬP NHẬT)</strong></td>
+          <td style="text-align: left">&ldquo;THAY ĐỔI món Phở Gà (ID 123) này thành Phở Bò, không hành.&rdquo;</td>
+          <td style="text-align: left"><code>PUT /users/123</code> (Cập nhật toàn bộ thông tin user 123)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>DELETE (XÓA)</strong></td>
+          <td style="text-align: left">&ldquo;HỦY món Phở Gà (ID 123) này khỏi hóa đơn.&rdquo;</td>
+          <td style="text-align: left"><code>DELETE /users/123</code> (Xóa user 123)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="3-tại-sao-lại-là-spring-boot-nhà-bếp-5-sao-có-sẵn"><em>3. Tại sao lại là Spring Boot? (Nhà bếp 5 sao có sẵn)</em></h3>
+<p>Nếu REST là &ldquo;Thực đơn&rdquo;, thì <strong>Spring Boot</strong> chính là <strong>Hệ thống Nhà bếp 5 sao</strong> 🌟 đã được lắp đặt sẵn mọi thứ:</p>
+<ul>
+<li>Bạn không cần tự nhóm lửa (Spring Boot có sẵn server Tomcat).</li>
+<li>Bạn không cần lo về ống nước (Spring Boot tự quản lý HTTP).</li>
+<li>Bạn không cần lo rửa bát (Spring Boot quản lý vòng đời, dọn dẹp).</li>
+</ul>
+<p>Nhiệm vụ của bạn (Lập trình viên) chỉ là một <strong>Đầu bếp</strong>: Tập trung vào việc chế biến món ăn (viết logic nghiệp vụ) mà thôi.</p>
+<h3 id="4-hướng-dẫn-xây-dựng-api"><em>4. Hướng dẫn: Xây dựng API &ldquo;Hello, World!&rdquo; đầu tiên</em></h3>
+<p>Chúng ta sẽ xây dựng một &ldquo;vòi nước&rdquo; (API) mà khi ai đó &ldquo;vặn&rdquo; (gọi) nó, nó sẽ &ldquo;chảy&rdquo; ra dòng chữ &ldquo;Hello, World!&rdquo;.</p>
+<h4 id="bước-1-lấy"><em>Bước 1: Lấy &ldquo;Bản thiết kế&rdquo; Nhà bếp (Spring Initializr)</em></h4>
+<p>Đi đến trang web &ldquo;kiến trúc sư&rdquo; của Spring: <a href="https://start.spring.io">start.spring.io</a></p>
+<p>Điền vào &ldquo;Bản thiết kế&rdquo;:</p>
+<ul>
+<li><strong>Project:</strong> Maven</li>
+<li><strong>Language:</strong> Java</li>
+<li><strong>Spring Boot:</strong> Chọn một phiên bản ổn định (không có <code>SNAPSHOT</code> hay <code>M</code>).</li>
+<li><strong>Project Metadata:</strong>
+<ul>
+<li><strong>Group:</strong> <code>com.example</code> (Tên công ty bạn)</li>
+<li><strong>Artifact:</strong> <code>hello-api</code> (Tên dự án của bạn)</li>
+</ul>
+</li>
+<li><strong>Dependencies (Nguyên liệu):</strong> Đây là phần quan trọng nhất. Nhấn <strong>Add Dependencies&hellip;</strong> và chọn:
+<ul>
+<li><strong>&ldquo;Spring Web&rdquo;</strong>: Đây là gói nguyên liệu bắt buộc để xây dựng nhà bếp (web server, REST).</li>
+</ul>
+</li>
+</ul>
+<p>Nhấn nút <strong>GENERATE</strong>. Bạn sẽ tải về một tệp <code>hello-api.zip</code>.</p>
+<p>Giải nén tệp zip này ra một thư mục.</p>
+<h4 id="bước-2-dọn-vào-nhà-bếp-mở-dự-án-trong-ide"><em>Bước 2: Dọn vào Nhà bếp (Mở dự án trong IDE)</em></h4>
+<p>Mở IDE yêu thích của bạn (IntelliJ, Eclipse, VS Code&hellip;).</p>
+<p>Chọn <strong>Open</strong> (hoặc <strong>Import Project</strong>) và trỏ đến thư mục <code>hello-api</code> bạn vừa giải nén.</p>
+<p>IDE sẽ mất vài phút để &ldquo;nhập kho&rdquo; (tải các thư viện Maven). Hãy kiên nhẫn.</p>
+<h4 id="bước-3-thuê"><em>Bước 3: Thuê &ldquo;Đầu bếp&rdquo; (Viết <code>@RestController</code>)</em></h4>
+<p>Bây giờ, chúng ta sẽ tạo ra &ldquo;Người đầu bếp&rdquo; chuyên xử lý các yêu cầu.</p>
+<p>Trong cấu trúc dự án, đi đến <code>src/main/java/com/example/helloapi</code>.</p>
+<p>Tạo một file Java mới tên là <code>HelloController.java</code>.</p>
+<p>Gõ (hoặc dán) đoạn code sau vào:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.helloapi;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.GetMapping;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.RestController;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Đánh dấu đây là &#34;Đầu bếp API&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloController</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Đăng ký món ăn (Resource)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/hello&#34;</span>) <span style="color:#75715e">// Nếu ai đó gọi (GET) món &#34;/hello&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">sayHello</span>() {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3. Chế biến và trả món</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello, World!&#34;</span>; 
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Giải thích (Peyman):</strong></p>
+<ul>
+<li><code>@RestController</code>: Đây là cái &ldquo;nón đầu bếp&rdquo; 🎓. Bạn nói với Spring: &ldquo;Này, class này không phải class bình thường. Nó là một Đầu bếp chuyên nhận đơn hàng API. Hãy giao các yêu cầu từ &lsquo;Thực đơn&rsquo; cho nó.&rdquo;</li>
+<li><code>@GetMapping(&quot;/hello&quot;)</code>: Đây là hành động bạn ghi món ăn lên &ldquo;Thực đơn&rdquo;.
+<ul>
+<li><strong>GET:</strong> Món này chỉ để &ldquo;XEM&rdquo; (dùng động từ GET).</li>
+<li><strong>&quot;/hello&quot;</strong>: Tên của món ăn trên thực đơn (đường dẫn/resource).</li>
+</ul>
+</li>
+<li><code>public String sayHello()</code>: Đây là công thức nấu món <code>/hello</code>.</li>
+<li><code>return &quot;Hello, World!&quot;;</code>: Đây là món ăn (dữ liệu) được trả về cho &ldquo;Thực khách&rdquo; (trình duyệt). Spring Boot đủ thông minh để tự động &ldquo;đóng gói&rdquo; (chuyển thành JSON hoặc text) món ăn này.</li>
+</ul>
+<h4 id="bước-4-mở-cửa-nhà-hàng-chạy-ứng-dụng"><em>Bước 4: Mở cửa Nhà hàng (Chạy ứng dụng)</em></h4>
+<p>Tìm file <code>HelloApiApplication.java</code> (file có hàm <code>main</code>).</p>
+<p>Nhấn chuột phải vào nó và chọn <strong>Run</strong>.</p>
+<p>Nhìn vào cửa sổ Console/Terminal. Khi bạn thấy dòng chữ tương tự: <code>... Tomcat started on port(s): 8080 (http) ...</code> &hellip; có nghĩa là <strong>Nhà hàng đã mở cửa!</strong> 🎉 Máy chủ của bạn đang lắng nghe ở cổng 8080.</p>
+<h4 id="bước-5-gọi-món-kiểm-tra-api"><em>Bước 5: Gọi món (Kiểm tra API)</em></h4>
+<p>Mở trình duyệt web của bạn (Chrome, Firefox&hellip;).</p>
+<p>Trên thanh địa chỉ, gõ vào &ldquo;món ăn&rdquo; bạn vừa tạo: <code>http://localhost:8080/hello</code></p>
+<p>Nhấn <strong>Enter</strong>.</p>
+<p><strong>Kết quả:</strong> Bạn sẽ thấy dòng chữ <code>Hello, World!</code> xuất hiện ngay trên trình duyệt.</p>
+<p>Chúc mừng! Bạn vừa chuyển từ việc &ldquo;hàn ống nước&rdquo; (Sockets) sang việc &ldquo;thiết kế vòi nước&rdquo; (REST API). Bạn đã xây dựng thành công API đầu tiên của mình mà không cần chạm vào một dòng <code>InputStream</code> hay <code>Socket.accept()</code> nào cả!</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1"><em>1. “Vòi nước” REST là gì?</em></a></li>
+        <li><a href="#2-ngôn-ngữ-của"><em>2. Ngôn ngữ của “Thực đơn” (Các phương thức HTTP)</em></a></li>
+        <li><a href="#3-tại-sao-lại-là-spring-boot-nhà-bếp-5-sao-có-sẵn"><em>3. Tại sao lại là Spring Boot? (Nhà bếp 5 sao có sẵn)</em></a></li>
+        <li><a href="#4-hướng-dẫn-xây-dựng-api"><em>4. Hướng dẫn: Xây dựng API “Hello, World!” đầu tiên</em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

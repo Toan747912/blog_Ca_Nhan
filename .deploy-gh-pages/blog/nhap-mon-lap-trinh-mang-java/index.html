@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56079&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Nhập môn Lập trình Mạng với Java | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                Nhập môn Lập trình Mạng với Java
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>Java</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <h2 id="1-ý-tưởng-cốt-lõi-lập-trình-mạng-là-gì"><strong>1. Ý tưởng Cốt lõi: Lập trình Mạng là gì?</strong></h2>
+<p>Trước khi nói về code, hãy tưởng tượng Lập trình Mạng giống như việc bạn <em><strong>dạy cho hai máy tính cách nói chuyện với nhau</strong></em>.</p>
+<p>Giống như con người, để nói chuyện, chúng cần:</p>
+<ul>
+<li>Một <em><strong>ngôn ngữ chung</strong></em> (Giống như tiếng Việt, tiếng Anh).</li>
+<li>Một <em><strong>cách thức liên lạc</strong></em> (Như gọi điện thoại, gửi thư tay, hay nói chuyện trực tiếp).</li>
+<li>Một <em><strong>địa chỉ</strong></em> để tìm thấy nhau (Như địa chỉ nhà hay số điện thoại).</li>
+</ul>
+<p>Lập trình mạng là việc bạn viết ra các chỉ dẫn (code) để thiết lập tất cả những quy tắc này, cho phép các chương trình trên các máy tính khác nhau trao đổi thông tin qua Internet hoặc mạng nội bộ.</p>
+<h2 id="2-các-khái-niệm-nền-tảng-những"><strong>2. Các Khái niệm Nền tảng (Những &ldquo;Luật chơi&rdquo; của cuộc hội thoại)</strong></h2>
+<p>Để máy tính &ldquo;nói chuyện&rdquo;, chúng ta cần 5 khái niệm cơ bản. Hãy tưởng tượng chúng ta đang thiết lập một <em><strong>dịch vụ giao pizza qua điện thoại</strong></em>. 🍕</p>
+<h3 id="a-mô-hình-client-server-khách-hàng-và-tiệm-pizza">A. Mô hình Client-Server (Khách hàng và Tiệm Pizza)</h3>
+<p>Đây là mô hình phổ biến nhất.</p>
+<ul>
+<li><em><strong>Server (Máy chủ):</strong></em> Là <em><strong>tiệm pizza</strong></em>. Nó luôn mở cửa, luôn ở một địa chỉ cố định, và <em>chờ đợi</em> các cuộc gọi đặt hàng. Nó có tài nguyên (pizza) để cung cấp.</li>
+<li><em><strong>Client (Máy khách):</strong></em> Là <em><strong>bạn (người gọi điện)</strong></em>. Bạn là người <em>chủ động</em> bắt đầu cuộc hội thoại (gọi điện) khi bạn có nhu cầu (đói bụng). Bạn <em>yêu cầu</em> dịch vụ từ Server.</li>
+</ul>
+<p>Trong thế giới mạng: Server là máy chủ web (như của Google) luôn &ldquo;lắng nghe&rdquo; yêu cầu. Client là trình duyệt web của bạn, &ldquo;yêu cầu&rdquo; trang web.</p>
+<h3 id="b-giao-thức---protocol-ngôn-ngữ-và-quy-trình-đặt-hàng"><strong>B. Giao thức - Protocol (Ngôn ngữ và Quy trình Đặt hàng)</strong></h3>
+<p>Protocol là <em><strong>bộ quy tắc và ngôn ngữ</strong></em> mà cả Client và Server đều phải tuân theo để hiểu nhau.</p>
+<ul>
+<li><em><strong>Tương tự (Analogy):</strong></em> Khi bạn gọi đến tiệm pizza (Server), bạn (Client) không thể nói &ldquo;Màu xanh&rdquo;. Bạn phải tuân theo một kịch bản:
+<ul>
+<li><em>Client chào:</em> &ldquo;Xin chào, tôi muốn đặt pizza.&rdquo; (Đây là <em><strong>HTTP GET request</strong></em>)</li>
+<li><em>Server trả lời:</em> &ldquo;Vâng, chúng tôi có pizza A, B, C. Anh muốn loại nào?&rdquo; (Đây là <em><strong>HTTP 200 OK response</strong></em>)</li>
+<li><em>Client đặt hàng:</em> &ldquo;Cho tôi 1 cái A.&rdquo;</li>
+<li><em>Server xác nhận:</em> &ldquo;OK, 30 phút nữa có hàng.&rdquo;</li>
+</ul>
+</li>
+</ul>
+<p>Nếu bạn nói một ngôn ngữ mà tiệm pizza không hiểu (một Protocol khác), cuộc giao dịch thất bại. Các giao thức phổ biến là <em><strong>TCP</strong></em> (đảm bảo thư đến nơi) và <em><strong>HTTP</strong></em> (quy tắc nói chuyện khi duyệt web).</p>
+<h3 id="c-địa-chỉ-ip-địa-chỉ-của-tiệm-pizza"><strong>C. Địa chỉ IP (Địa chỉ của Tiệm Pizza)</strong></h3>
+<p>Địa chỉ IP (Internet Protocol) là <em><strong>địa chỉ nhà duy nhất</strong></em> của mỗi thiết bị trên mạng. Nó là một dãy số (ví dụ: <code>172.217.14.228</code> là của Google).</p>
+<ul>
+<li><em><strong>Tương tự:</strong></em> Địa chỉ IP chính là địa chỉ đường phố cụ thể của tiệm pizza. Nếu không có địa chỉ IP, bạn (Client) sẽ không biết phải <em>quay số điện thoại nào</em> hoặc <em>lái xe đến đâu</em> để tìm Server.</li>
+</ul>
+<h3 id="d-cổng---port-các-bộ-phận-khác-nhau-trong-tiệm-pizza"><strong>D. Cổng - Port (Các Bộ phận Khác nhau trong Tiệm Pizza)</strong></h3>
+<p>Nếu IP là địa chỉ tòa nhà (tiệm pizza), thì Cổng (Port) là <em><strong>số máy lẻ hoặc cửa cụ thể</strong></em> cho từng dịch vụ.</p>
+<ul>
+<li><em><strong>Tương tự:</strong></em> Một tiệm pizza lớn (một Server) có thể có nhiều dịch vụ:
+<ul>
+<li><em><strong>Cửa 1 (ví dụ: Port 80):</strong></em> Dành cho khách đến <em>ăn tại chỗ</em> (Web HTTP).</li>
+<li><em><strong>Cửa 2 (ví dụ: Port 443):</strong></em> Dành cho khách <em>VIP có bảo vệ</em> (Web an toàn HTTPS).</li>
+<li><em><strong>Đường dây nội bộ (ví dụ: Port 21):</strong></em> Dành cho <em>nhà cung cấp</em> giao bột (Truyền file FTP).</li>
+</ul>
+</li>
+</ul>
+<p>Khi Client gửi yêu cầu, nó phải nói rõ: &ldquo;Tôi muốn đến <em>địa chỉ IP này</em> và vào <em>cổng số 80</em>.&rdquo; Máy tính của bạn cũng dùng các cổng khác nhau để vừa duyệt web (Port 80), vừa nhận email (Port 110) cùng lúc.</p>
+<h3 id="e-socket-cuộc-gọi-điện-thoại-"><strong>E. Socket (Cuộc gọi Điện thoại)</strong> 📞</h3>
+<p>Đây là khái niệm trừu tượng nhưng quan trọng nhất. Socket là <em><strong>điểm cuối của cuộc hội thoại</strong></em>. Nó kết hợp cả <em><strong>IP và Port</strong></em>.</p>
+<ul>
+<li><em><strong>Tương tự (Analogy tốt nhất):</strong></em>
+<ul>
+<li><em><strong>IP</strong></em> = Số điện thoại của tiệm pizza (<code>028.38.xxx.xxx</code>).</li>
+<li><em><strong>Port</strong></em> = Số máy lẻ (<code>101</code> để gặp bộ phận đặt hàng).</li>
+<li><em><strong>Socket</strong></em> = Chính là <em><strong>cuộc điện thoại đang diễn ra</strong></em>.</li>
+</ul>
+</li>
+</ul>
+<p>Khi bạn (Client) tạo một <code>Socket</code>, bạn giống như đang <em>nhấc điện thoại lên và bấm số</em> (IP + Port) của Server. Khi Server tạo một <code>Socket</code> (chính xác là <code>ServerSocket</code>), nó giống như đang <em>cắm điện thoại vào đường dây và chờ</em> ở máy lẻ 101 (Port).</p>
+<p>Khi kết nối, một &ldquo;Socket&rdquo; được tạo ra ở cả hai đầu, và hai máy tính có thể <em>nói</em> (ghi dữ liệu) và <em>nghe</em> (đọc dữ liệu) thông qua cái Socket đó.</p>
+<h2 id="3-tại-sao-chọn-java-cho-lập-trình-mạng-công-cụ-tốt-nhất"><strong>3. Tại sao chọn Java cho Lập trình Mạng? (Công cụ tốt nhất)</strong></h2>
+<p>Java là một lựa chọn tuyệt vời vì hai lý do chính, được giải thích đơn giản:</p>
+<h3 id="a-tính-đa-nền-tảng-"><strong>A. Tính đa nền tảng (&ldquo;Viết một lần, chạy khắp nơi&rdquo;)</strong></h3>
+<ul>
+<li><em><strong>Vấn đề:</strong></em> Tưởng tượng bạn viết chương trình Server bằng &ldquo;tiếng Windows&rdquo;. Nhưng Client của bạn lại dùng máy Mac, nói &ldquo;tiếng MacOS&rdquo;. Hai bên sẽ không hiểu nhau.</li>
+<li><em><strong>Giải pháp của Java:</strong></em> Java không nói &ldquo;tiếng Windows&rdquo; hay &ldquo;tiếng MacOS&rdquo;. Nó nói một ngôn ngữ trung gian (gọi là bytecode).</li>
+<li><em><strong>Tương tự:</strong></em> Hãy coi Java như một <em><strong>người phiên dịch viên (Translator)</strong></em> 🧑‍🏫.
+<ul>
+<li>Bạn viết chương trình Server (một lá thư) bằng Java.</li>
+<li>Bạn đưa lá thư đó cho &ldquo;người phiên dịch Java&rdquo; (gọi là JVM) trên máy Windows, nó sẽ dịch ra &ldquo;tiếng Windows&rdquo;.</li>
+<li>Bạn đưa cùng lá thư đó cho &ldquo;người phiên dịch Java&rdquo; trên máy Mac, nó sẽ dịch ra &ldquo;tiếng MacOS&rdquo;.</li>
+</ul>
+</li>
+<li><em><strong>Lợi ích:</strong></em> Bạn viết Server một lần, và nó có thể chạy mượt mà trên bất kỳ máy tính nào (Windows, Mac, Linux) miễn là có cài &ldquo;người phiên dịch&rdquo; JVM.</li>
+</ul>
+<h3 id="b-thư-viện-"><strong>B. Thư viện <code>java.net</code> phong phú (Hộp dụng cụ có sẵn)</strong>🧰</h3>
+<p>Lập trình mạng ở tầng thấp rất phức tạp, giống như việc bạn phải <em>tự xây dựng một hệ thống điện thoại từ đầu</em> (tự kéo dây đồng, tự làm ống nghe).</p>
+<ul>
+<li>
+<p><em><strong>Giải pháp của Java:</strong></em> Gói <code>java.net</code> cung cấp cho bạn những &ldquo;công cụ&rdquo; làm sẵn, cực kỳ dễ dùng.</p>
+</li>
+<li>
+<p><em><strong>Tương tự:</strong></em> Thay vì tự xây dựng, Java đưa cho bạn:</p>
+<ol>
+<li>
+<p><em><strong>Một Cái điện thoại (Lớp <code>Socket</code>)</strong></em>: Bạn chỉ cần nhấc lên và <em>quay số</em> (IP + Port) của Server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Socket clientSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket(<span style="color:#e6db74">&#34;172.217.14.228&#34;</span>, 80);
+</span></span></code></pre></div><p><em>(Nghĩa là: &ldquo;Gọi cho tôi đến máy Google ở cổng 80&rdquo;)</em></p>
+</li>
+<li>
+<p><em><strong>Một Tổng đài (Lớp <code>ServerSocket</code>)</strong></em>: Dành cho Server. Bạn chỉ cần cắm nó vào một cổng và chờ.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket(9999);
+</span></span></code></pre></div><p><em>(Nghĩa là: &ldquo;Tôi sẽ lắng nghe ở cổng 9999&rdquo;)</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Socket client <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
+</span></span></code></pre></div><p><em>(Nghĩa là: &ldquo;A, có cuộc gọi đến! Nối máy cho tôi.&rdquo;)</em></p>
+</li>
+</ol>
+</li>
+</ul>
+<p><em><strong>Kết luận:</strong></em> Java che giấu tất cả sự phức tạp của việc gửi và nhận các &ldquo;mẫu tin&rdquo; (data packets) trên mạng. Nó cho phép bạn tập trung vào điều quan trọng: <em><strong>Bạn muốn gửi <em>cái gì</em> (dữ liệu nghiệp vụ) chứ không phải <em>làm thế nào</em> để gửi nó đi.</strong></em></p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-ý-tưởng-cốt-lõi-lập-trình-mạng-là-gì"><strong>1. Ý tưởng Cốt lõi: Lập trình Mạng là gì?</strong></a></li>
+    <li><a href="#2-các-khái-niệm-nền-tảng-những"><strong>2. Các Khái niệm Nền tảng (Những “Luật chơi” của cuộc hội thoại)</strong></a>
+      <ul>
+        <li><a href="#a-mô-hình-client-server-khách-hàng-và-tiệm-pizza">A. Mô hình Client-Server (Khách hàng và Tiệm Pizza)</a></li>
+        <li><a href="#b-giao-thức---protocol-ngôn-ngữ-và-quy-trình-đặt-hàng"><strong>B. Giao thức - Protocol (Ngôn ngữ và Quy trình Đặt hàng)</strong></a></li>
+        <li><a href="#c-địa-chỉ-ip-địa-chỉ-của-tiệm-pizza"><strong>C. Địa chỉ IP (Địa chỉ của Tiệm Pizza)</strong></a></li>
+        <li><a href="#d-cổng---port-các-bộ-phận-khác-nhau-trong-tiệm-pizza"><strong>D. Cổng - Port (Các Bộ phận Khác nhau trong Tiệm Pizza)</strong></a></li>
+        <li><a href="#e-socket-cuộc-gọi-điện-thoại-"><strong>E. Socket (Cuộc gọi Điện thoại)</strong> 📞</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-tại-sao-chọn-java-cho-lập-trình-mạng-công-cụ-tốt-nhất"><strong>3. Tại sao chọn Java cho Lập trình Mạng? (Công cụ tốt nhất)</strong></a>
+      <ul>
+        <li><a href="#a-tính-đa-nền-tảng-"><strong>A. Tính đa nền tảng (“Viết một lần, chạy khắp nơi”)</strong></a></li>
+        <li><a href="#b-thư-viện-"><strong>B. Thư viện <code>java.net</code> phong phú (Hộp dụng cụ có sẵn)</strong>🧰</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

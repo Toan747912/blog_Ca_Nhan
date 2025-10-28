@@ -1,9 +1,10 @@
 # Ngôn ngữ và tiêu đề website
 
 # QUAN TRỌNG: Dòng 'baseURL' này dùng cho lúc build cuối cùng để deploy.
-# Hãy comment (thêm dấu #) ở đầu dòng này khi chạy máy chủ local (hugo server).
-# Khi nào build để deploy lên GitHub Pages (lệnh 'hugo'), hãy bỏ dấu # và điền link GitHub Pages của bạn vào.
-baseURL = "https://ngoquctoan0908.github.io/"
+# Khi chạy local với `hugo server`, hãy để baseURL = "/".
+# Khi build để deploy lên GitHub Pages (lệnh 'hugo'), hãy đổi thành link GitHub Pages của bạn.
+# Ví dụ: baseURL = "https://Toan747912.github.io/blog_Ca_Nhan/"
+baseURL = "http://localhost:1313"
 
 languageCode = "vi-VN"
 title = "Blog | Ngô Quốc Toàn"

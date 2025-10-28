@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56079&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Tìm hiểu UDP Sockets trong Java: Gửi Bưu thiếp Siêu tốc | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                Tìm hiểu UDP Sockets trong Java: Gửi Bưu thiếp Siêu tốc
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>Java</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p>Bạn đã biết về TCP Sockets—giống như một cuộc gọi điện thoại 📞. Nó đáng tin cậy, có trật tự, nhưng lại &ldquo;nặng nề&rdquo; và tốn thời gian thiết lập.</p>
+<p>Bây giờ, hãy làm quen với &ldquo;người anh em&rdquo; nhanh nhẹn nhưng&hellip; hơi cẩu thả của nó: <strong>UDP</strong>.</p>
+<h3 id="ý-tưởng-cốt-lõi-theo-phương-pháp-peyman-udp-user-datagram-protocol-giống-hệt-như-việc-bạn-gửi-một-tấm"><em>Ý tưởng cốt lõi (Theo phương pháp Peyman): UDP (User Datagram Protocol) giống hệt như việc bạn gửi một tấm <strong>bưu thiếp (postcard)</strong> ✉️.</em></h3>
+<ul>
+<li><strong>Không kết nối:</strong> Bạn không cần gọi điện để &ldquo;thiết lập cuộc gọi&rdquo; trước. Bạn chỉ cần viết địa chỉ người nhận lên bưu thiếp và&hellip; gửi.</li>
+<li><strong>Nhanh và nhẹ:</strong> Không cần &ldquo;alo&rdquo;, không cần &ldquo;tạm biệt&rdquo;. Chỉ cần gửi!</li>
+<li><strong>Không đáng tin cậy:</strong> Bưu thiếp của bạn có thể bị thất lạc trên đường đi. Bạn sẽ không bao giờ biết trừ khi người nhận gửi lại một tấm bưu thiếp khác.</li>
+<li><strong>Không theo thứ tự:</strong> Nếu bạn gửi 3 tấm bưu thiếp (Tin 1, Tin 2, Tin 3), người nhận có thể nhận được chúng theo thứ tự: Tin 2, Tin 3, Tin 1.</li>
+</ul>
+<p>UDP là lựa chọn hoàn hảo khi <strong>tốc độ là vua</strong> và việc mất một vài &ldquo;mẩu tin&rdquo; không phải là tận thế.</p>
+<h3 id="phần-1-so-sánh"><em>Phần 1: So sánh &ldquo;Sống còn&rdquo; - TCP vs. UDP</em></h3>
+<p>Hãy đặt cả hai lên bàn cân. Tưởng tượng bạn muốn gửi 100 câu của một câu chuyện cho bạn mình.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tính năng</th>
+          <th>TCP (Cuộc gọi Điện thoại   📞)</th>
+          <th>UDP (Gửi Bưu thiếp ✉️)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Thiết lập</td>
+          <td><strong>Phải có   kết nối (Connection-Oriented).</strong><br/>Phải quay số, chờ bên kia nhấc máy   (<code>accept()</code>). Mất thời gian.</td>
+          <td><strong>Không kết   nối (Connectionless).</strong><br/>Không cần &ldquo;alo&rdquo;. Cứ thế gửi. Siêu   nhanh.</td>
+      </tr>
+      <tr>
+          <td>Độ tin cậy</td>
+          <td><strong>Đáng tin cậy.</strong><br/>Mọi câu nói đều   được đảm bảo đến nơi. Nếu bên kia nghe &ldquo;hả?&rdquo;, bạn sẽ <em>tự động nói   lại</em>.</td>
+          <td><strong>Không đáng tin cậy.</strong><br/>Bưu thiếp   có thể bị mất. Gửi đi là xong, không quan tâm nó đến hay không.</td>
+      </tr>
+      <tr>
+          <td><strong>Thứ tự</strong></td>
+          <td><strong>Đảm bảo   thứ tự.</strong><br/>Gửi &ldquo;Câu 1, Câu 2&rdquo; thì bên kia <em>chắc chắn</em> nhận   &ldquo;Câu 1, Câu 2&rdquo;.</td>
+          <td><strong>Không đảm   bảo thứ tự.</strong><br/>Gửi &ldquo;Bưu thiếp 1, Bưu thiếp 2&rdquo;, bên kia có   thể nhận &ldquo;Bưu thiếp 2, Bưu thiếp 1&rdquo;.</td>
+      </tr>
+      <tr>
+          <td><strong>Trọng lượng</strong></td>
+          <td><strong>Nặng (Heavyweight).</strong><br/>Cần nhiều   &ldquo;thủ tục&rdquo; (header) để quản lý kết nối, thứ tự, kiểm tra lỗi.</td>
+          <td><strong>Nhẹ (Lightweight).</strong><br/>Chỉ cần   &ldquo;Địa chỉ người gửi, Địa chỉ người nhận, Nội dung&rdquo;. Rất ít thủ   tục.</td>
+      </tr>
+      <tr>
+          <td><strong>Ẩn dụ</strong></td>
+          <td>Một cuộc gọi   điện thoại có đảm bảo.</td>
+          <td>Một loạt bưu   thiếp được ném qua hàng rào.</td>
+      </tr>
+      <tr>
+          <td><strong>Ví dụ</strong></td>
+          <td>Duyệt web (HTTP), Tải file (FTP), Chat (cần   tin cậy).</td>
+          <td>Game online, Streaming video, Gọi VoIP.</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="phần-2-các"><em>Phần 2: Các &ldquo;Công cụ&rdquo; UDP trong Java (Bưu điện và Bưu thiếp)</em></h3>
+<p>Với TCP, chúng ta có <code>ServerSocket</code> (Tổng đài) và <code>Socket</code> (Cuộc gọi). Với UDP, mọi thứ đơn giản hơn. Chúng ta chỉ có 2 thứ:</p>
+<ol>
+<li>
+<p><strong><code>DatagramSocket</code> (Bưu điện/Hòm thư) 📮:</strong></p>
+<ul>
+<li>Đây là cái hòm thư của bạn. Nó có một địa chỉ (số cổng, ví dụ: 9876).</li>
+<li><strong>Điều thú vị:</strong> Bạn dùng <strong>cùng một</strong> cái hòm thư này để <strong>gửi</strong> bưu thiếp đi (<code>send()</code>) và <strong>nhận</strong> bưu thiếp đến (<code>receive()</code>).</li>
+<li>Nó không phải là &ldquo;Server&rdquo; hay &ldquo;Client&rdquo;. Nó chỉ là một &ldquo;điểm giao dịch&rdquo; (socket).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>DatagramPacket</code> (Tấm Bưu thiếp) ✉️:</strong></p>
+<ul>
+<li>Đây chính là tấm bưu thiếp (hoặc gói hàng) của bạn.</li>
+<li>Một tấm bưu thiếp (Packet) chứa 3 thứ:
+<ol>
+<li><strong>Nội dung:</strong> Dữ liệu bạn muốn gửi (dưới dạng <code>byte[]</code>).</li>
+<li><strong>Độ dài:</strong> Bạn gửi bao nhiêu byte (vì gói <code>byte[]</code> có thể to nhưng bạn chỉ dùng 1 phần).</li>
+<li><strong>Địa chỉ người nhận:</strong> Gồm <strong>IP và Cổng</strong> (ví dụ: gửi đến máy <code>192.168.1.10</code> ở hòm thư <code>9876</code>).</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="phần-3-xây-dựng-ứng-dụng"><em>Phần 3: Xây dựng Ứng dụng &ldquo;Gửi Bưu thiếp&rdquo;</em></h3>
+<p>Chúng ta sẽ tạo 2 chương trình:</p>
+<ul>
+<li><code>UDPServer</code> (Người nhận): Ngồi tại &ldquo;hòm thư&rdquo; 9876 và chờ bưu thiếp đến.</li>
+<li><code>UDPClient</code> (Người gửi): Viết một tấm bưu thiếp và gửi nó đến &ldquo;hòm thư&rdquo; 9876.</li>
+</ul>
+<h4 id="a-udpserverjava-người-nhận---chờ-bưu-thiếp"><em>A. UDPServer.java (Người nhận - Chờ Bưu thiếp)</em></h4>
+<p><strong>Nhiệm vụ:</strong></p>
+<ol>
+<li>Mở &ldquo;hòm thư&rdquo; (<code>DatagramSocket</code>) tại cổng 9876.</li>
+<li>Chuẩn bị một &ldquo;cái giỏ rỗng&rdquo; (<code>DatagramPacket</code>) để hứng bưu thiếp.</li>
+<li>Ngồi chờ (<code>receive()</code>).</li>
+<li>Khi có bưu thiếp, đọc nội dung và in ra.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.DatagramPacket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.DatagramSocket;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UDPServer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server (Người nhận) đã khởi động, đang chờ bưu thiếp...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (DatagramSocket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DatagramSocket(9876)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 1. Mở hòm thư (Socket) ở cổng 9876</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Dùng try-with-resources để nó tự đóng khi xong</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) { <span style="color:#75715e">// Chờ mãi mãi</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 2. Chuẩn bị &#34;cái giỏ rỗng&#34; để hứng bưu thiếp</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Chúng ta cần một mảng byte đủ lớn.</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> buffer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>1024<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                DatagramPacket packet <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DatagramPacket(buffer, buffer.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 3. Ngồi chờ (BLOCKING)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Dòng này sẽ &#34;treo&#34; chương trình lại cho đến khi</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// có một bưu thiếp (packet) bay vào hòm thư (socket).</span>
+</span></span><span style="display:flex;"><span>                socket.<span style="color:#a6e22e">receive</span>(packet);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 4. Đã nhận được! Đọc nội dung</span>
+</span></span><span style="display:flex;"><span>                String receivedMessage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String(
+</span></span><span style="display:flex;"><span>                    packet.<span style="color:#a6e22e">getData</span>(),      <span style="color:#75715e">// Lấy dữ liệu từ bưu thiếp</span>
+</span></span><span style="display:flex;"><span>                    0,                     <span style="color:#75715e">// Bắt đầu từ byte 0</span>
+</span></span><span style="display:flex;"><span>                    packet.<span style="color:#a6e22e">getLength</span>()     <span style="color:#75715e">// Lấy đúng độ dài thực tế</span>
+</span></span><span style="display:flex;"><span>                );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Đã nhận được bưu thiếp: &#39;&#34;</span> <span style="color:#f92672">+</span> receivedMessage <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// (Tùy chọn) Lấy địa chỉ người gửi để biết ai đã gửi</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// InetAddress senderAddress = packet.getAddress();</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// int senderPort = packet.getPort();</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Giải thích (Peyman):</strong></p>
+<ul>
+<li><code>new DatagramSocket(9876)</code>: Tôi tuyên bố: &ldquo;Tôi là chủ sở hữu hòm thư số 9876.&rdquo;</li>
+<li><code>byte[] buffer = new byte[1024]</code> và <code>new DatagramPacket(buffer, buffer.length)</code>: Đây là bước hơi lạ. Bạn phải đưa cho bưu điện một cái <strong>giỏ rỗng</strong> (buffer) và nói &ldquo;Giỏ này chứa được tối đa 1024 byte&rdquo;. Khi bưu thiếp đến, bưu điện sẽ đặt nó vào cái giỏ này cho bạn.</li>
+<li><code>socket.receive(packet)</code>: Đây là hành động &ldquo;Ngồi ở bưu điện và chờ&rdquo;. Chương trình sẽ <strong>dừng lại ở đây</strong> cho đến khi có thư.</li>
+<li><code>new String(packet.getData(), 0, packet.getLength())</code>: <strong>Rất quan trọng!</strong> <code>packet.getData()</code> trả về cả cái giỏ (1024 byte), nhưng bưu thiếp có thể chỉ là 10 byte (&ldquo;Hello&rdquo;). <code>packet.getLength()</code> cho bạn biết kích thước thật của bưu thiếp. Chúng ta chỉ đọc đúng 10 byte đó thôi.</li>
+</ul>
+<h4 id="b-udpclientjava-người-gửi---gửi-bưu-thiếp"><em>B. UDPClient.java (Người gửi - Gửi Bưu thiếp)</em></h4>
+<p><strong>Nhiệm vụ:</strong></p>
+<ol>
+<li>Mở &ldquo;hòm thư&rdquo; của chính mình (không cần cổng cụ thể).</li>
+<li>Viết nội dung (data).</li>
+<li>Tìm địa chỉ người nhận (IP + Port).</li>
+<li>Tạo &ldquo;tấm bưu thiếp&rdquo; (<code>DatagramPacket</code>) có đủ 3 thông tin (nội dung, dài, địa chỉ).</li>
+<li>Gửi nó đi (<code>send()</code>).</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.DatagramPacket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.DatagramSocket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.InetAddress;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UDPClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client (Người gửi) đã khởi động.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (DatagramSocket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DatagramSocket()) { 
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 1. Mở hòm thư của chính mình.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Không cần số cổng (hoặc để số 0), hệ điều hành sẽ tự chọn</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// một cổng ngẫu nhiên cho mình để gửi đi.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2. Lấy địa chỉ người nhận</span>
+</span></span><span style="display:flex;"><span>            InetAddress serverAddress <span style="color:#f92672">=</span> InetAddress.<span style="color:#a6e22e">getByName</span>(<span style="color:#e6db74">&#34;localhost&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> serverPort <span style="color:#f92672">=</span> 9876; <span style="color:#75715e">// Phải khớp với hòm thư của Server</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(System.<span style="color:#a6e22e">in</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Nhập nội dung bưu thiếp: &#34;</span>);
+</span></span><span style="display:flex;"><span>                String message <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextLine</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 3. Viết nội dung (chuyển String thành byte[])</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data <span style="color:#f92672">=</span> message.<span style="color:#a6e22e">getBytes</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 4. Tạo &#34;tấm bưu thiếp&#34;</span>
+</span></span><span style="display:flex;"><span>                DatagramPacket packet <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DatagramPacket(
+</span></span><span style="display:flex;"><span>                    data,                   <span style="color:#75715e">// Nội dung</span>
+</span></span><span style="display:flex;"><span>                    data.<span style="color:#a6e22e">length</span>,            <span style="color:#75715e">// Độ dài nội dung</span>
+</span></span><span style="display:flex;"><span>                    serverAddress,          <span style="color:#75715e">// Địa chỉ IP người nhận</span>
+</span></span><span style="display:flex;"><span>                    serverPort              <span style="color:#75715e">// Số hòm thư (Cổng) người nhận</span>
+</span></span><span style="display:flex;"><span>                );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 5. Gửi đi!</span>
+</span></span><span style="display:flex;"><span>                socket.<span style="color:#a6e22e">send</span>(packet);
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;-&gt; Đã gửi bưu thiếp!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (message.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;exit&#34;</span>)) <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Giải thích (Peyman):</strong></p>
+<ul>
+<li><code>new DatagramSocket()</code>: Tôi chỉ cần &ldquo;đến bưu điện&rdquo; để gửi thư. Tôi không cần đăng ký hòm thư cố định.</li>
+<li><code>InetAddress.getByName(&quot;localhost&quot;)</code>: Tìm &ldquo;địa chỉ nhà&rdquo; của <code>localhost</code> (chính máy này).</li>
+<li><code>new DatagramPacket(data, data.length, serverAddress, serverPort)</code>: Đây là hành động viết bưu thiếp hoàn chỉnh: Ghi nội dung (<code>data</code>), ghi rõ độ dài (<code>data.length</code>), và quan trọng nhất là ghi <strong>địa chỉ người nhận</strong> (<code>serverAddress</code>, <code>serverPort</code>).</li>
+<li><code>socket.send(packet)</code>: &ldquo;Bỏ bưu thiếp vào thùng!&rdquo; 🚀. Xong. Client không quan tâm nó có đến hay không. Nó ngay lập tức quay lại vòng lặp <code>while</code> để gửi tấm tiếp theo.</li>
+</ul>
+<h3 id="phần-4-khi-nào-thì-dùng"><em>Phần 4: Khi nào thì dùng &ldquo;Bưu thiếp&rdquo; (UDP)?</em></h3>
+<p>UDP nghe có vẻ &ldquo;tệ&rdquo; (mất, sai thứ tự), nhưng nó lại là cứu cánh cho các ứng dụng mà <strong>sự trễ nải (delay) còn tệ hơn là mất dữ liệu</strong>.</p>
+<ul>
+<li>
+<p><strong>Game Online (MMO, Bắn súng) 🎮:</strong></p>
+<ul>
+<li>Tưởng tượng bạn đang chơi game. Vị trí X, Y của bạn thay đổi 60 lần mỗi giây.</li>
+<li>Bạn gửi 60 &ldquo;bưu thiếp&rdquo; vị trí/giây cho server.</li>
+<li><strong>Kịch bản xấu (UDP):</strong> Bưu thiếp số 3 (vị trí lúc 0.03s) bị mất. <strong>Chả sao cả!</strong> Vì 0.01s sau, bưu thiếp số 4 (vị trí lúc 0.04s) đã đến nơi. Server chỉ cần cập nhật vị trí mới nhất. Người chơi khác chỉ thấy bạn &ldquo;khựng&rdquo; nhẹ 1 khung hình.</li>
+<li><strong>Kịch bản thảm họa (TCP):</strong> Bưu thiếp số 3 bị mất. TCP sẽ la lên: &ldquo;Dừng lại! Tôi mất gói số 3 rồi! Gửi lại cho tôi!&rdquo; Toàn bộ game của bạn sẽ đứng hình (lag) trong nửa giây chỉ để chờ cái gói tin đã cũ mèm đó. <strong>Tốc độ quan trọng hơn độ chính xác tuyệt đối.</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Streaming Video / Gọi Thoại (Zoom, Discord) 🎥:</strong></p>
+<ul>
+<li>Khi bạn xem video, bạn nhận hàng ngàn mẩu hình ảnh.</li>
+<li>Nếu 1 mẩu nhỏ (1 pixel) của 1 khung hình bị mất, bạn có chấp nhận dừng cả bộ phim lại để tải lại 1 pixel đó không? <strong>Không!</strong></li>
+<li>Bạn chấp nhận hình ảnh bị &ldquo;vỡ&rdquo; nhẹ (pixelation) trong 1 giây, miễn là video tiếp tục chạy.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Kết luận:</strong> Dùng <strong>TCP (Điện thoại)</strong> khi bạn cần sự <strong>hoàn hảo</strong> (tải file, gửi email). Dùng <strong>UDP (Bưu thiếp)</strong> khi bạn cần <strong>tốc độ</strong> và chấp nhận sự không hoàn hảo (game, stream).</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ý-tưởng-cốt-lõi-theo-phương-pháp-peyman-udp-user-datagram-protocol-giống-hệt-như-việc-bạn-gửi-một-tấm"><em>Ý tưởng cốt lõi (Theo phương pháp Peyman): UDP (User Datagram Protocol) giống hệt như việc bạn gửi một tấm <strong>bưu thiếp (postcard)</strong> ✉️.</em></a></li>
+        <li><a href="#phần-1-so-sánh"><em>Phần 1: So sánh “Sống còn” - TCP vs. UDP</em></a></li>
+        <li><a href="#phần-2-các"><em>Phần 2: Các “Công cụ” UDP trong Java (Bưu điện và Bưu thiếp)</em></a></li>
+        <li><a href="#phần-3-xây-dựng-ứng-dụng"><em>Phần 3: Xây dựng Ứng dụng “Gửi Bưu thiếp”</em></a></li>
+        <li><a href="#phần-4-khi-nào-thì-dùng"><em>Phần 4: Khi nào thì dùng “Bưu thiếp” (UDP)?</em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on Blog | Ngô Quốc Toàn</title>
+    <link>http://localhost:56079/categories/javascript/</link>
+    <description>Recent content in JavaScript on Blog | Ngô Quốc Toàn</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:56079/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript và Mạng: Quyền năng ở Cả Hai Đầu Dây</title>
+      <link>http://localhost:56079/blog/javascript-va-mang-client-server/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56079/blog/javascript-va-mang-client-server/</guid>
+      <description>&lt;p&gt;JavaScript là ngôn ngữ độc nhất vô nhị. Nó là ngôn ngữ duy nhất mà trình duyệt web (Client) có thể hiểu được. Nhưng vào năm 2009, một thứ gọi là &lt;strong&gt;Node.js&lt;/strong&gt; ra đời, và nó đã làm một điều điên rồ: Nó &amp;ldquo;bẻ khóa&amp;rdquo; JavaScript ra khỏi trình duyệt và cho phép nó chạy ở&amp;hellip; &lt;strong&gt;&amp;ldquo;Khu bếp&amp;rdquo; (Server)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Hãy xem JavaScript đảm nhận hai vai trò này như thế nào.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>&#39;Người phục vụ&#39; Gửi Đơn hàng: Làm chủ Fetch API (GET, POST)</title>
+      <link>http://localhost:56079/blog/gui-yeu-cau-http-voi-fetch-api/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56079/blog/gui-yeu-cau-http-voi-fetch-api/</guid>
+      <description>&lt;p&gt;Bạn đã xây dựng một &amp;ldquo;Nhà bếp&amp;rdquo; (Spring Boot API) xịn sò. Giờ là lúc dạy cho &amp;ldquo;Người phục vụ&amp;rdquo; (JavaScript) cách gửi đơn hàng (Requests) đến đó.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Fetch API&lt;/strong&gt; chính là cuốn &lt;strong&gt;sổ ghi đơn hàng (Order Pad)&lt;/strong&gt; 📝 hiện đại, được tích hợp sẵn trong mọi trình duyệt. Nó cho phép &amp;ldquo;Người phục vụ&amp;rdquo; (JS) gửi yêu cầu đến &amp;ldquo;Bếp&amp;rdquo; (Server) và xử lý &amp;ldquo;món ăn&amp;rdquo; (Data) khi nó được trả về.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express</title>
+      <link>http://localhost:56079/blog/xay-dung-server-side-app-nodejs-express/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56079/blog/xay-dung-server-side-app-nodejs-express/</guid>
+      <description>&lt;p&gt;Chúng ta sẽ xây dựng một &amp;ldquo;Nhà bếp&amp;rdquo; (Server) bằng JavaScript, sẵn sàng nhận &amp;ldquo;Đơn hàng&amp;rdquo; (HTTP Requests) từ &amp;ldquo;Người phục vụ&amp;rdquo; (Fetch API) mà chúng ta đã học.&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-bước-1-xin&#34;&gt;&lt;em&gt;1. Bước 1: Xin &amp;ldquo;Giấy phép Kinh doanh&amp;rdquo; (Khởi tạo dự án Node.js)&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;p&gt;Trước khi thuê &amp;ldquo;Trợ lý&amp;rdquo;, bạn cần đăng ký &amp;ldquo;Nhà hàng&amp;rdquo; của mình.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Tạo một thư mục mới cho dự án: &lt;code&gt;mkdir my-express-server&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Đi vào thư mục đó: &lt;code&gt;cd my-express-server&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Chạy lệnh sau:&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm init -y&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Giải thích (Peyman):&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>&#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js</title>
+      <link>http://localhost:56079/blog/giao-tiep-realtime-voi-websockets-nodejs/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56079/blog/giao-tiep-realtime-voi-websockets-nodejs/</guid>
+      <description>&lt;p&gt;Ở các bài trước, chúng ta đã xây dựng một &amp;ldquo;Nhà hàng&amp;rdquo; (Server) hoạt động theo kiểu REST API.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Vấn đề của REST API (Kiểu Bồi bàn 🤵):&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Khách (Client) muốn gì, phải gọi Bồi bàn: &amp;ldquo;Cho tôi ly nước!&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Bồi bàn (HTTP Request) chạy vào bếp, lấy nước, mang ra, rồi&amp;hellip; biến mất.&lt;/li&gt;&#xA;&lt;li&gt;Khách muốn thêm đá? Phải gọi Bồi bàn một lần nữa.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Vấn đề lớn nhất:&lt;/strong&gt; Bếp (Server) làm xong món, không thể tự mang ra. Bếp phải chờ Bồi bàn vào hỏi: &amp;ldquo;Món xong chưa?&amp;rdquo;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Đây là kiểu &lt;strong&gt;Hỏi-Đáp (Request-Response)&lt;/strong&gt;. Nó hoạt động, nhưng rất chậm và &amp;ldquo;phiền phức&amp;rdquo; cho các ứng dụng cần liên tục, như Chat, Game, hay xem Tỷ số Trực tiếp.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

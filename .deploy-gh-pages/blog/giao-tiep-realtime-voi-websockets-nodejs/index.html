@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56079&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>&#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                &#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>JavaScript</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p>Ở các bài trước, chúng ta đã xây dựng một &ldquo;Nhà hàng&rdquo; (Server) hoạt động theo kiểu REST API.</p>
+<p><strong>Vấn đề của REST API (Kiểu Bồi bàn 🤵):</strong></p>
+<ul>
+<li>Khách (Client) muốn gì, phải gọi Bồi bàn: &ldquo;Cho tôi ly nước!&rdquo;</li>
+<li>Bồi bàn (HTTP Request) chạy vào bếp, lấy nước, mang ra, rồi&hellip; biến mất.</li>
+<li>Khách muốn thêm đá? Phải gọi Bồi bàn một lần nữa.</li>
+<li><strong>Vấn đề lớn nhất:</strong> Bếp (Server) làm xong món, không thể tự mang ra. Bếp phải chờ Bồi bàn vào hỏi: &ldquo;Món xong chưa?&rdquo;</li>
+</ul>
+<p>Đây là kiểu <strong>Hỏi-Đáp (Request-Response)</strong>. Nó hoạt động, nhưng rất chậm và &ldquo;phiền phức&rdquo; cho các ứng dụng cần liên tục, như Chat, Game, hay xem Tỷ số Trực tiếp.</p>
+<h3 id="1-phép-loại-suy-cốt-lõi-websocket-là-gì"><em>1. Phép loại suy Cốt lõi: WebSocket là gì?</em></h3>
+<p><strong>WebSocket</strong> ☎️ là một công nghệ giải quyết dứt điểm vấn đề trên.</p>
+<p><strong>Analogy:</strong> Thay vì liên tục gọi &ldquo;Bồi bàn&rdquo;, ngay khi Khách (Client) vào bàn, chúng ta đặt một <strong>đường dây điện thoại nội bộ</strong> 📞 kết nối thẳng từ &ldquo;Bàn ăn&rdquo; (Client) đến &ldquo;Bếp&rdquo; (Server).</p>
+<p>Đường dây điện thoại này có 3 đặc điểm vàng:</p>
+<ol>
+<li><strong>Thiết lập 1 lần (Handshake):</strong> Khách nhấc máy &ldquo;Alo, Bếp nghe rõ không?&rdquo;. Bếp: &ldquo;Rõ!&rdquo; (Đây là cú &ldquo;bắt tay&rdquo; HTTP ban đầu).</li>
+<li><strong>Luôn mở (Persistent):</strong> Cả hai bên không cúp máy. Đường dây được giữ mở liên tục.</li>
+<li><strong>Hai chiều (Full-Duplex):</strong>
+<ul>
+<li><strong>Client -&gt; Server:</strong> Khách (Client) có thể nhấc máy bất cứ lúc nào và nói: &ldquo;Bàn 5 gửi tin nhắn: &lsquo;Chào bạn!&rsquo;&rdquo;</li>
+<li><strong>Server -&gt; Client:</strong> Bếp (Server) có thể nhấc máy bất cứ lúc nào và thông báo: &ldquo;Có tin nhắn mới từ bàn 7: &lsquo;Bạn khỏe không?&rsquo;&rdquo;</li>
+</ul>
+</li>
+</ol>
+<p><strong>Kết quả?</strong> Tin nhắn được gửi và nhận <strong>ngay lập tức (real-time)</strong> mà không cần &ldquo;Bồi bàn&rdquo; (F5 hay Fetch) chạy đi chạy lại.</p>
+<h3 id="2"><em>2. &ldquo;Tổng đài&rdquo; hay &ldquo;Điện thoại&rdquo; (Nên dùng <code>ws</code> hay <code>socket.io</code>?)</em></h3>
+<p>Node.js cung cấp 2 công cụ phổ biến:</p>
+<ul>
+<li><code>ws</code>: Giống như một cái điện thoại cơ bản. Nó làm đúng một việc là kết nối WebSocket. Nhanh, gọn, nhưng bạn phải tự làm mọi thứ (tự kết nối lại khi rớt mạng, tự chia phòng chat&hellip;).</li>
+<li><code>socket.io</code>: Giống như một <strong>Tổng đài Thông minh</strong> 👩‍💼. Nó sử dụng WebSocket làm lõi, nhưng &ldquo;bọc&rdquo; thêm rất nhiều tính năng xịn:
+<ul>
+<li><strong>Tự động kết nối lại:</strong> Nếu đường dây (mạng) bị nhiễu, nó tự động gọi lại.</li>
+<li><strong>Phát sóng (Broadcasting):</strong> Cho phép &ldquo;Bếp&rdquo; hét một tin nhắn cho <strong>tất cả</strong> các bàn (Clients) đang kết nối.</li>
+<li><strong>Phòng (Rooms):</strong> Cho phép bạn tạo các &ldquo;phòng chat riêng&rdquo; (ví dụ: chỉ bàn 5 và 7 nói chuyện với nhau).</li>
+<li><strong>Tương thích ngược (Fallback):</strong> Nếu trình duyệt quá cũ, không biết &ldquo;điện thoại&rdquo; (WebSocket) là gì, <code>socket.io</code> sẽ tự động chuyển sang dùng&hellip; &ldquo;Bồi bàn&rdquo; (HTTP) để giả lập chat.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Quyết định:</strong> Đối với ứng dụng chat, <code>socket.io</code> là lựa chọn tốt hơn rất nhiều. Chúng ta sẽ dùng nó.</p>
+<h3 id="3-bước-1-xây-dựng"><em>3. Bước 1: Xây dựng &ldquo;Tổng đài&rdquo; (Server-Side: Node.js + socket.io)</em></h3>
+<p>Chúng ta sẽ xây dựng &ldquo;Tổng đài&rdquo; (Server) biết lắng nghe các &ldquo;cuộc gọi&rdquo; (connections) và chuyển &ldquo;tin nhắn&rdquo; (messages).</p>
+<h4 id="a-chuẩn-bị-giống-bài-express"><em>A. Chuẩn bị (Giống bài Express):</em></h4>
+<ol>
+<li>Tạo thư mục <code>realtime-chat-server</code>.</li>
+<li><code>cd realtime-chat-server</code></li>
+<li><code>npm init -y</code></li>
+<li>Thuê &ldquo;Trợ lý Bếp&rdquo; (Express) và &ldquo;Tổng đài&rdquo; (Socket.io):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install express socket.io
+</span></span></code></pre></div><h4 id="b-viết-code"><em>B. Viết code <code>index.js</code> (Trái tim của Tổng đài):</em></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Triệu hồi &#34;Trợ lý Bếp&#34; và &#34;Tổng đài&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>); <span style="color:#75715e">// Cần &#34;Người xây dựng&#34; HTTP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Server</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;socket.io&#34;</span>); <span style="color:#75715e">// Lấy lớp &#34;Server&#34; từ socket.io
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Phép loại suy quan trọng:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;Tổng đài&#34; (socket.io) không thể tự chạy.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Nó cần &#34;cưỡi&#34; 🏇 lên một &#34;con ngựa&#34; (HTTP Server) có sẵn.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Chúng ta tạo &#34;con ngựa&#34; đó từ &#34;Trợ lý Bếp&#34; (Express).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>(<span style="color:#a6e22e">app</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Bảo &#34;Tổng đài&#34; (io) cưỡi lên &#34;con ngựa&#34; (server)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">io</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Server</span>(<span style="color:#a6e22e">server</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. (Tùy chọn) Bảo &#34;Trợ lý Bếp&#34; phục vụ &#34;Menu&#34; (file HTML)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">sendFile</span>(<span style="color:#a6e22e">__dirname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/index.html&#39;</span>); <span style="color:#75715e">// Gửi file HTML mà ta sẽ tạo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 5. ⭐️ ĐÂY LÀ PHÉP THUẬT ⭐️
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Dạy &#34;Tổng đài&#34; (io) phải làm gì khi có &#34;Cuộc gọi&#34; (connection)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;connection&#39;</span>, (<span style="color:#a6e22e">socket</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Analogy: &#34;connection&#34; = một &#34;Khách&#34; (Client) vừa nhấc máy gọi đến.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// &#34;socket&#34; = chính là &#34;đường dây riêng&#34; 📞 của ta với vị khách đó.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Một Khách đã kết nối đường dây!&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Dạy &#34;Tổng đài&#34; lắng nghe &#34;lời nói&#34; từ đường dây riêng đó
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Khi Khách đó nói (emit) một sự kiện tên là &#39;chat message&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;chat message&#39;</span>, (<span style="color:#a6e22e">msg</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tin nhắn từ Khách: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Analogy: &#34;Bếp&#34; (Server) nhận được tin.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Giờ &#34;Bếp&#34; (io) hét lên cho TẤT CẢ các đường dây khác
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// (tất cả các Khách) đều nghe thấy.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">emit</span>(<span style="color:#e6db74">&#39;chat message&#39;</span>, <span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Dạy &#34;Tổng đài&#34; xử lý khi Khách &#34;cúp máy&#34; (disconnect)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;disconnect&#39;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Một Khách đã cúp máy.&#39;</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 6. Mở cửa &#34;Nhà bếp&#34; VÀ &#34;Tổng đài&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">PORT</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Tổng đài đang lắng nghe ở cổng </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">PORT</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="4-bước-2-lắp"><em>4. Bước 2: Lắp &ldquo;Điện thoại Bàn&rdquo; (Client-Side: HTML + JS)</em></h3>
+<p>Giờ chúng ta tạo file <code>index.html</code> để &ldquo;Khách&rdquo; (Client) có cái để &ldquo;gọi&rdquo; và &ldquo;nghe&rdquo;.</p>
+<h4 id="a-tạo-file"><em>A. Tạo file <code>index.html</code> (Đặt chung thư mục <code>index.js</code>):</em></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">title</span>&gt;Chat Real-time&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">body</span> { <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">padding-bottom</span>: <span style="color:#ae81ff">3</span><span style="color:#66d9ef">rem</span>; <span style="color:#66d9ef">font-family</span>: <span style="color:#66d9ef">sans-serif</span>; }
+</span></span><span style="display:flex;"><span>    #messages { <span style="color:#66d9ef">list-style-type</span>: <span style="color:#66d9ef">none</span>; <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span>; }
+</span></span><span style="display:flex;"><span>    #messages <span style="color:#f92672">li</span> { <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0.5</span><span style="color:#66d9ef">rem</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>; }
+</span></span><span style="display:flex;"><span>    #messages <span style="color:#f92672">li</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">odd</span><span style="color:#f92672">)</span> { <span style="color:#66d9ef">background</span>: <span style="color:#ae81ff">#efefef</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">form</span> { <span style="color:#66d9ef">background</span>: rgba(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.1</span>); <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0.25</span><span style="color:#66d9ef">rem</span>; <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">fixed</span>; <span style="color:#66d9ef">bottom</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">right</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">flex</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">input</span> { <span style="color:#66d9ef">border</span>: <span style="color:#66d9ef">none</span>; <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>; <span style="color:#66d9ef">flex-grow</span>: <span style="color:#ae81ff">1</span>; <span style="color:#66d9ef">margin-right</span>: <span style="color:#ae81ff">.25</span><span style="color:#66d9ef">rem</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">button</span> { <span style="color:#66d9ef">background</span>: <span style="color:#ae81ff">#007bff</span>; <span style="color:#66d9ef">border</span>: <span style="color:#66d9ef">none</span>; <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>; <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">white</span>; }
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">ul</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;messages&#34;</span>&gt;&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form&#34;</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span> <span style="color:#a6e22e">autocomplete</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;off&#34;</span> /&gt;&lt;<span style="color:#f92672">button</span>&gt;Gửi&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/socket.io/socket.io.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. &#34;NHẤC MÁY LÊN!&#34; 📞
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// &#34;io()&#34; = Tự động gọi đến &#34;Tổng đài&#34; (Server)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// đã phục vụ trang web này.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">io</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Lấy các phần tử HTML
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">form</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;form&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;input&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">messages</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;messages&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 4. HÀNH ĐỘNG 1: GỬI TIN (Nói 🗣️)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Khi Khách nhấn nút &#34;Gửi&#34;...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;submit&#39;</span>, (<span style="color:#a6e22e">e</span>) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>(); <span style="color:#75715e">// Ngăn trang F5 (làm mất &#34;Bồi bàn&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">value</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;Nói&#34; vào điện thoại (emit) sự kiện &#39;chat message&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// kèm theo &#34;lời nói&#34; (input.value)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">emit</span>(<span style="color:#e6db74">&#39;chat message&#39;</span>, <span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>; <span style="color:#75715e">// Xóa ô chat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 5. HÀNH ĐỘNG 2: NHẬN TIN (Nghe 🎧)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// &#34;Lắng nghe&#34; điện thoại.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Khi &#34;Tổng đài&#34; (Server) hét (emit) sự kiện &#39;chat message&#39;...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;chat message&#39;</span>, (<span style="color:#a6e22e">msg</span>) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ...lấy &#34;lời nói&#34; (msg) đó...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;li&#39;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ...và thêm vào danh sách chat trên màn hình.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">messages</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">item</span>);
+</span></span><span style="display:flex;"><span>      window.<span style="color:#a6e22e">scrollTo</span>(<span style="color:#ae81ff">0</span>, document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">scrollHeight</span>); <span style="color:#75715e">// Cuộn xuống cuối
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    });
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h3 id="5-chạy-thử-nghiệm"><em>5. Chạy thử nghiệm!</em></h3>
+<ol>
+<li>
+<p>Chạy Server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node index.js
+</span></span></code></pre></div><p>(Bạn sẽ thấy: <code>Tổng đài đang lắng nghe ở cổng 3000</code>)</p>
+</li>
+<li>
+<p>Mở trình duyệt (ví dụ: Chrome) và truy cập: <code>http://localhost:3000</code></p>
+</li>
+<li>
+<p>Mở một trình duyệt khác (ví dụ: Firefox) hoặc một Tab Ẩn danh và cũng truy cập: <code>http://localhost:3000</code></p>
+</li>
+<li>
+<p>Đặt 2 cửa sổ cạnh nhau.</p>
+</li>
+<li>
+<p>Gõ tin nhắn vào cửa sổ này, và nhấn <strong>Gửi</strong>.</p>
+</li>
+</ol>
+<p><strong>Kết quả:</strong> Tin nhắn sẽ xuất hiện <strong>ngay lập tức</strong> ⚡ ở cửa sổ kia mà không cần F5 hay tải lại trang.</p>
+<p>Bạn đã thành công! Bạn đã &ldquo;cài đặt đường dây điện thoại nội bộ&rdquo; (WebSocket) và bỏ đi &ldquo;người bồi bàn&rdquo; (HTTP) phiền phức, tạo ra một ứng dụng chat thời gian thực hoàn chỉnh.</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-phép-loại-suy-cốt-lõi-websocket-là-gì"><em>1. Phép loại suy Cốt lõi: WebSocket là gì?</em></a></li>
+        <li><a href="#2"><em>2. “Tổng đài” hay “Điện thoại” (Nên dùng <code>ws</code> hay <code>socket.io</code>?)</em></a></li>
+        <li><a href="#3-bước-1-xây-dựng"><em>3. Bước 1: Xây dựng “Tổng đài” (Server-Side: Node.js + socket.io)</em></a></li>
+        <li><a href="#4-bước-2-lắp"><em>4. Bước 2: Lắp “Điện thoại Bàn” (Client-Side: HTML + JS)</em></a></li>
+        <li><a href="#5-chạy-thử-nghiệm"><em>5. Chạy thử nghiệm!</em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

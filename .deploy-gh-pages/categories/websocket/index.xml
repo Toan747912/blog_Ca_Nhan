@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WebSocket on Blog | Ngô Quốc Toàn</title>
+    <link>http://localhost:56079/categories/websocket/</link>
+    <description>Recent content in WebSocket on Blog | Ngô Quốc Toàn</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:56079/categories/websocket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>&#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js</title>
+      <link>http://localhost:56079/blog/giao-tiep-realtime-voi-websockets-nodejs/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56079/blog/giao-tiep-realtime-voi-websockets-nodejs/</guid>
+      <description>&lt;p&gt;Ở các bài trước, chúng ta đã xây dựng một &amp;ldquo;Nhà hàng&amp;rdquo; (Server) hoạt động theo kiểu REST API.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Vấn đề của REST API (Kiểu Bồi bàn 🤵):&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Khách (Client) muốn gì, phải gọi Bồi bàn: &amp;ldquo;Cho tôi ly nước!&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Bồi bàn (HTTP Request) chạy vào bếp, lấy nước, mang ra, rồi&amp;hellip; biến mất.&lt;/li&gt;&#xA;&lt;li&gt;Khách muốn thêm đá? Phải gọi Bồi bàn một lần nữa.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Vấn đề lớn nhất:&lt;/strong&gt; Bếp (Server) làm xong món, không thể tự mang ra. Bếp phải chờ Bồi bàn vào hỏi: &amp;ldquo;Món xong chưa?&amp;rdquo;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Đây là kiểu &lt;strong&gt;Hỏi-Đáp (Request-Response)&lt;/strong&gt;. Nó hoạt động, nhưng rất chậm và &amp;ldquo;phiền phức&amp;rdquo; cho các ứng dụng cần liên tục, như Chat, Game, hay xem Tỷ số Trực tiếp.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

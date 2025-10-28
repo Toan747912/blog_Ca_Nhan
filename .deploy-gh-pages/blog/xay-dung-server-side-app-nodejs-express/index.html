@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56079&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>JavaScript</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p>Chúng ta sẽ xây dựng một &ldquo;Nhà bếp&rdquo; (Server) bằng JavaScript, sẵn sàng nhận &ldquo;Đơn hàng&rdquo; (HTTP Requests) từ &ldquo;Người phục vụ&rdquo; (Fetch API) mà chúng ta đã học.</p>
+<h3 id="1-bước-1-xin"><em>1. Bước 1: Xin &ldquo;Giấy phép Kinh doanh&rdquo; (Khởi tạo dự án Node.js)</em></h3>
+<p>Trước khi thuê &ldquo;Trợ lý&rdquo;, bạn cần đăng ký &ldquo;Nhà hàng&rdquo; của mình.</p>
+<ol>
+<li>Tạo một thư mục mới cho dự án: <code>mkdir my-express-server</code></li>
+<li>Đi vào thư mục đó: <code>cd my-express-server</code></li>
+<li>Chạy lệnh sau:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm init -y
+</span></span></code></pre></div><p><strong>Giải thích (Peyman):</strong></p>
+<ul>
+<li><code>npm</code> (Node Package Manager) là &ldquo;Cơ quan Quản lý Nhân sự &amp; Trang thiết bị&rdquo; 👷.</li>
+<li><code>npm init -y</code> là hành động bạn nói: &ldquo;Hãy cấp cho tôi một Giấy phép Kinh doanh ngay lập tức, dùng các thông tin mặc định.&rdquo;</li>
+<li>Hành động này tạo ra một file tên là <code>package.json</code>.</li>
+</ul>
+<p><code>package.json</code> chính là tờ <strong>&ldquo;Giấy phép Kinh doanh&rdquo;</strong> 📜. Nó ghi lại:</p>
+<ul>
+<li>Tên nhà hàng (<code>name</code>).</li>
+<li>Phiên bản (<code>version</code>).</li>
+<li>Và quan trọng nhất: Danh sách &ldquo;nhân viên&rdquo; (<code>dependencies</code>) mà bạn sẽ thuê.</li>
+</ul>
+<h3 id="2-bước-2-thuê"><em>2. Bước 2: Thuê &ldquo;Trợ lý Bếp&rdquo; (Cài đặt Express)</em></h3>
+<p>Giờ &ldquo;Nhà hàng&rdquo; đã có giấy phép, hãy thuê &ldquo;Trợ lý Bếp&rdquo; (Express) đầu tiên.</p>
+<p>Chạy lệnh sau trong terminal:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install express
+</span></span></code></pre></div><p><strong>Giải thích (Peyman):</strong></p>
+<ul>
+<li><code>npm install express</code> là lệnh bạn gọi cho &ldquo;Cơ quan Quản lý&rdquo; (npm) và nói: &ldquo;Hãy thuê và gửi cho tôi một &ldquo;Trợ lý&rdquo; tên là &rsquo;express&rsquo;.&rdquo;</li>
+</ul>
+<p>npm sẽ làm 2 việc:</p>
+<ol>
+<li>Tải code của Express và toàn bộ &ldquo;đồ nghề&rdquo; 🔧 của anh ta vào thư mục tên là <code>node_modules</code> (đây là &ldquo;Phòng chứa Đồ nghề&rdquo;).</li>
+<li>Tự động cập nhật &ldquo;Giấy phép Kinh doanh&rdquo; (<code>package.json</code>) của bạn, ghi vào mục <code>dependencies</code>: <code>&quot;express&quot;: &quot;...&quot;</code>. (Đây là bằng chứng bạn đã thuê anh ta hợp pháp).</li>
+</ol>
+<h3 id="3-bước-3-mở-cửa"><em>3. Bước 3: Mở cửa &ldquo;Nhà bếp&rdquo; (Tạo Máy chủ Web)</em></h3>
+<p>&ldquo;Trợ lý&rdquo; đã đến! Giờ hãy bảo anh ta mở cửa &ldquo;Nhà bếp&rdquo; và bắt đầu lắng nghe đơn hàng.</p>
+<p>Tạo một file mới tên là <code>index.js</code> (đây là nơi &ldquo;Bếp trưởng&rdquo; là BẠN viết chỉ dẫn).</p>
+<p>Viết code sau vào <code>index.js</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. &#34;Triệu hồi&#34; Trợ lý Express từ phòng Đồ nghề
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Tạo một &#34;phiên bản&#34; của Trợ lý, sẵn sàng làm việc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Chọn &#34;Cổng&#34; (giống như số máy lẻ) mà Bếp sẽ nghe
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Cổng 3000 là cổng phổ biến cho phát triển
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. BẢO TRỢ LÝ: &#34;Mở cửa Bếp ở Cổng 3000&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// và bắt đầu LẮNG NGHE 🔔 đơn hàng.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Đoạn code này chỉ chạy 1 lần khi Bếp mở cửa thành công
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Nhà bếp (Server) đang lắng nghe ở cổng </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Cách chạy &ldquo;Nhà bếp&rdquo;:</strong></p>
+<ol>
+<li>Mở terminal.</li>
+<li>Gõ lệnh: <code>node index.js</code></li>
+</ol>
+<p>Nếu bạn thấy: <code>Nhà bếp (Server) đang lắng nghe ở cổng 3000</code> -&gt; Chúc mừng, &ldquo;Bếp&rdquo; của bạn đã mở cửa!</p>
+<h3 id="4-bước-4-dạy"><em>4. Bước 4: Dạy &ldquo;Trợ lý&rdquo; xử lý Đơn hàng (API Endpoints)</em></h3>
+<p>Đây là phần &ldquo;Bếp trưởng&rdquo; (bạn) dạy cho &ldquo;Trợ lý&rdquo; (Express) các quy tắc nghiệp vụ.</p>
+<h4 id="quy-tắc-1-món"><em>Quy tắc 1: Món &ldquo;Hello World&rdquo; (GET Request)</em></h4>
+<p>Dạy &ldquo;Trợ lý&rdquo;: &ldquo;Nếu &lsquo;Người phục vụ&rsquo; (Fetch) gọi món (GET) có tên là <code>/api/hello</code>&hellip;&rdquo;</p>
+<p>Thêm code này vào trước <code>app.listen()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Dạy Trợ lý (app) cách xử lý đơn hàng GET
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// tại &#34;địa chỉ món&#34; (endpoint) là &#39;/api/hello&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/api/hello&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// (req) = &#34;Phiếu Đơn hàng&#34; 📝 (Request)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//         Nó chứa thông tin: khách gọi món gì, từ bàn nào...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// (res) = &#34;Khay Thức ăn&#34; 🍲 (Response)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//         Là thứ bạn dùng để gửi trả món ăn lại
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Bếp: Vừa nhận đơn hàng /api/hello!&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Dùng &#34;Khay&#34; (res) để gửi trả một &#34;món ăn&#34; dạng JSON
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Chào bạn, đây là Nhà bếp Express!&#34;</span> });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Kiểm tra:</strong> Chạy lại server (<code>node index.js</code>). Mở trình duyệt và gõ: <code>http://localhost:3000/api/hello</code>. Bạn sẽ thấy &ldquo;món ăn&rdquo; JSON của mình!</p>
+<h4 id="quy-tắc-2-nhận"><em>Quy tắc 2: Nhận &ldquo;Công thức&rdquo; Mới (POST Request)</em></h4>
+<p>Dạy &ldquo;Trợ lý&rdquo;: &ldquo;Nếu &lsquo;Người phục vụ&rsquo; (Fetch) gửi một &lsquo;Công thức&rsquo; (POST) đến <code>/api/users</code>&hellip;&rdquo;</p>
+<p>&ldquo;Người phục vụ&rdquo; (Fetch) sẽ gửi &ldquo;công thức&rdquo; (JSON) dưới dạng văn bản đã mã hóa (<code>JSON.stringify</code>). &ldquo;Trợ lý&rdquo; Express mặc định không hiểu văn bản này.</p>
+<p>Chúng ta cần lắp cho anh ta một <strong>&ldquo;Cỗ máy Dịch&rdquo;</strong> 📦 (Middleware).</p>
+<p><strong>Lắp &ldquo;Máy Dịch JSON&rdquo;:</strong> Thêm dòng này ngay sau <code>const app = express();</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Dạy Trợ lý: &#34;Hãy tự động dùng &#39;máy dịch&#39; này cho MỌI đơn hàng&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;Máy&#34; này sẽ dịch &#34;giấy&#34; JSON (String) thành &#34;nguyên liệu&#34; (JS Object)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">json</span>()); 
+</span></span></code></pre></div><p><strong>Dạy quy tắc POST:</strong> Thêm quy tắc mới này (vẫn trước <code>app.listen</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Dạy Trợ lý xử lý đơn POST tại &#39;/api/users&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/api/users&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Nhờ &#34;Máy dịch&#34; (express.json()),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// &#34;công thức&#34; từ Fetch gửi lên đã nằm sẵn trong req.body
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newUser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Bếp: Nhận được công thức cho user mới:&#34;</span>, <span style="color:#a6e22e">newUser</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// (Đây là lúc bạn sẽ gọi Service/Repository để lưu vào DB)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Bây giờ, chúng ta chỉ cần giả lập là đã tạo thành công:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Gửi trả &#34;món ăn&#34; (user mới) kèm theo ID (giả lập)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// và mã 201 (Created)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">201</span>).<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">123</span>, ...<span style="color:#a6e22e">newUser</span> });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Giờ đây, &ldquo;Nhà bếp&rdquo; của bạn đã sẵn sàng nhận yêu cầu POST từ Fetch API mà chúng ta đã học ở bài trước!</p>
+<h3 id="5-bước-5-phục-vụ"><em>5. Bước 5: Phục vụ &ldquo;Menu&rdquo; (Phục vụ Tệp Tĩnh)</em></h3>
+<p>Một &ldquo;Nhà bếp&rdquo; (Server) không chỉ gửi dữ liệu JSON, nó còn phải cung cấp &ldquo;Menu&rdquo; (HTML), &ldquo;Khăn ăn&rdquo; (CSS), và &ldquo;Dao dĩa&rdquo; (Client-side JS) cho &ldquo;Người phục vụ&rdquo; (Browser).</p>
+<p>Đây gọi là <strong>Tệp Tĩnh (Static Files)</strong>.</p>
+<p>&ldquo;Trợ lý&rdquo; Express có một quy tắc tự động siêu phàm cho việc này.</p>
+<ol>
+<li>Tạo một thư mục mới trong dự án tên là <code>public</code>.</li>
+<li>Bên trong <code>public</code>, tạo file <code>index.html</code>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;&lt;<span style="color:#f92672">title</span>&gt;Nhà hàng Express&lt;/<span style="color:#f92672">title</span>&gt;&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;Chào mừng đến Nhà hàng của chúng tôi!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;Đây là Menu (tệp tĩnh).&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><ol start="3">
+<li><strong>Kích hoạt quy tắc tự động:</strong> Thêm dòng này vào <code>index.js</code> (ngay sau <code>app.use(express.json())</code>):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Dạy Trợ lý: &#34;Nếu ai đó hỏi BẤT CỨ file gì (HTML, CSS, JPG)...&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;...hãy tự động TÌM trong thư mục &#39;public&#39; và gửi đi.&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;KHÔNG CẦN HỎI &#39;Bếp trưởng&#39; (bạn)!&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#66d9ef">static</span>(<span style="color:#e6db74">&#39;public&#39;</span>));
+</span></span></code></pre></div><p><strong>Kiểm tra:</strong></p>
+<ol>
+<li>Chạy lại server (<code>node index.js</code>).</li>
+<li>Bây giờ, mở trình duyệt và truy cập: <code>http://localhost:3000/</code> (không có <code>/api/hello</code>).</li>
+</ol>
+<p><strong>Bùm!</strong> &ldquo;Trợ lý&rdquo; Express tự động tìm thấy <code>index.html</code> trong <code>public</code> và gửi nó đi. Bạn đã phục vụ thành công trang web đầu tiên của mình!</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-bước-1-xin"><em>1. Bước 1: Xin “Giấy phép Kinh doanh” (Khởi tạo dự án Node.js)</em></a></li>
+        <li><a href="#2-bước-2-thuê"><em>2. Bước 2: Thuê “Trợ lý Bếp” (Cài đặt Express)</em></a></li>
+        <li><a href="#3-bước-3-mở-cửa"><em>3. Bước 3: Mở cửa “Nhà bếp” (Tạo Máy chủ Web)</em></a></li>
+        <li><a href="#4-bước-4-dạy"><em>4. Bước 4: Dạy “Trợ lý” xử lý Đơn hàng (API Endpoints)</em></a></li>
+        <li><a href="#5-bước-5-phục-vụ"><em>5. Bước 5: Phục vụ “Menu” (Phục vụ Tệp Tĩnh)</em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>
