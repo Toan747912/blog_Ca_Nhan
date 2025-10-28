@@ -1,0 +1,270 @@
+/* Tệp CSS này sẽ được liên kết trong layouts/_default/baseof.html
+  Nó chứa các style tùy chỉnh không có trong Tailwind và style cho nội dung Markdown.
+*/
+
+/* --- Cấu hình Tailwind --- */
+/* Vì chúng ta đang dùng link CDN, chúng ta không thể dùng @tailwind.
+  Thay vào đó, tệp HTML (baseof.html) sẽ tải Tailwind qua thẻ <script>.
+  Tệp này chỉ dùng để bổ sung các style mà Tailwind không tự động áp dụng.
+*/
+
+/* --- Styling cho nội dung Markdown (Nội dung bài viết chi tiết) --- */
+
+/* Thêm class 'prose' và 'dark:prose-invert' vào thẻ <article> 
+  trong 'layouts/_default/single.html' để Tailwind tự động áp dụng
+  style cho các thẻ h1, h2, p, code, v.v. được sinh ra từ Markdown.
+
+  Chúng ta thêm các style bổ sung ở đây nếu cần.
+*/
+
+/* Tùy chỉnh cho khối code (code block) trong bài viết,
+  giúp nó nổi bật hơn.
+*/
+.prose pre,
+.prose-invert pre {
+  background-color: #f3f4f6; /* Màu nền xám nhạt cho code block ở chế độ sáng */
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem; /* bo góc */
+  padding: 1rem;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu code quá dài */
+}
+
+/* Chế độ tối cho code block */
+.dark .prose-invert pre {
+  background-color: #1f2937; /* Màu nền xám đậm cho code block ở chế độ tối */
+  border-color: #374151;
+}
+
+/* Tùy chỉnh cho code inline (`code`) */
+.prose :where(code):not(:where(pre, pre *)),
+.prose-invert :where(code):not(:where(pre, pre *)) {
+  background-color: #fee2e2; /* Màu nền đỏ nhạt (cho Java) */
+  color: #b91c1c; /* Màu chữ đỏ đậm */
+  border-radius: 0.25rem;
+  padding: 0.2em 0.4em;
+  font-weight: 500;
+}
+body {
+
+}
+
+/* Chế độ tối cho code inline */
+.dark .prose-invert :where(code):not(:where(pre, pre *)) {
+  background-color: #312e81; /* Màu nền tím đậm */
+  color: #a5b4fc; /* Màu chữ tím nhạt */
+}
+
+/* Bạn có thể thêm style cho các thẻ JavaScript nếu muốn phân biệt */
+/* (Điều này đòi hỏi xử lý nâng cao trong HUGO, tạm thời dùng chung 1 style) */
+
+
+/* --- Các hiệu ứng bổ sung --- */
+
+/* Hiệu ứng mượt mà khi chuyển đổi dark mode */
+body, 
+header, 
+main,
+footer,
+.dark-mode-toggle {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Thêm hiệu ứng cho các icon mạng xã hội khi hover */
+.social-link svg {
+  transition: transform 0.2s ease-in-out;
+}
+.social-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* Thêm hiệu ứng cho thẻ bài viết khi hover (từ prototype) */
+.blog-card-hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.blog-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .blog-card-hover:hover {
+   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Styling for tables */
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 8px;
+}
+
+.dark table, .dark th, .dark td {
+    border-color: #e5e7eb;
+}
+
+/* Định nghĩa "cái khay" chứa các bài viết */
+.post-list-container {
+  display: grid; /* Sử dụng chế độ "khay" (Grid) */
+  
+  /* ĐÂY LÀ CHÌA KHÓA:
+     Tạo 2 cột, mỗi cột rộng bằng nhau (1fr = 1 phần) */
+  grid-template-columns: 1fr 1fr; 
+  
+  /* Tạo khoảng cách giữa các bài viết */
+  gap: 30px; /* 30px là ví dụ, bạn có thể thay đổi */
+}
+
+/* Định nghĩa "mỗi bài viết" (viên đá) */
+.post-item {
+  /* Mỗi bài viết sẽ tự động chiếm 1 ô (vị trí) */
+  /* Bạn có thể thêm viền, bóng đổ, v.v. ở đây */
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.post-item img {
+  width: 100%; /* Bắt buộc rộng 100% */
+  height: 300px; /* Bắt buộc cao 300px (ví dụ) */
+  
+  /* ĐÂY LÀ CHÌA KHÓA:
+     "Hiển thị TOÀN BỘ ảnh bên TRONG khung 300px này"
+     Nếu ảnh ngang, nó sẽ bị trống ở trên/dưới (letterbox)
+     Nếu ảnh đứng, nó sẽ bị trống ở hai bên
+  */
+  object-fit: contain; 
+  
+  /* Thêm nền cho đẹp mắt */
+  background-color: #f4f4f4; 
+}
+
+/* Căn đều và thụt lề đầu dòng cho các đoạn văn trong bài viết */
+.prose p {
+  text-align: justify;
+  text-indent: 2em; /* Thụt lề đầu dòng */
+}
+
+/* --- Styling cho màu sắc tiêu đề --- */
+
+/* Chế độ sáng */
+.prose h2 {
+  color: #2563eb; /* blue-600 */
+}
+
+.prose h3 {
+  color: #0d9488; /* teal-600 */
+}
+
+/* Chế độ tối */
+.dark .prose-invert h2 {
+  color: #60a5fa; /* blue-400 */
+}
+
+.dark .prose-invert h3 {
+  color: #2dd4bf; /* teal-400 */
+}
+
+/* --- Các lớp màu tiện ích (có độ ưu tiên cao hơn) --- */
+
+/* --- Màu Xanh Dương --- */
+.prose .text-blue {
+  color: #2563eb; /* blue-600 */
+}
+.dark .prose-invert .text-blue {
+  color: #60a5fa; /* blue-400 */
+}
+
+/* --- Màu Xanh Lá --- */
+.prose .text-green {
+  color: #16a34a; /* green-600 */
+}
+.dark .prose-invert .text-green {
+  color: #4ade80; /* green-400 */
+}
+
+/* --- Màu Đỏ --- */
+.prose .text-red {
+  color: #dc2626; /* red-600 */
+}
+.dark .prose-invert .text-red {
+  color: #f87171; /* red-400 */
+}
+
+/* --- Màu Vàng --- */
+.prose .text-yellow {
+  color: #ca8a04; /* yellow-600 */
+}
+.dark .prose-invert .text-yellow {
+  color: #facc15; /* yellow-400 */
+}
+
+/* --- Styling cho Mục lục (Table of Contents) --- */
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  font-size: 0.875rem; /* text-sm */
+}
+
+.toc li + li {
+    margin-top: 0.5rem; /* space-y-2 */
+}
+
+.toc a {
+  color: #6b7280; /* gray-500 */
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  display: block;
+}
+
+.dark .toc a {
+    color: #9ca3af; /* dark:text-gray-400 */
+}
+
+.toc a:hover {
+  color: #111827; /* gray-900 */
+  transform: translateX(4px);
+}
+
+.dark .toc a:hover {
+    color: #f9fafb; /* dark:text-white */
+}
+
+/* Thụt lề cho các cấp mục lục con */
+.toc ul ul {
+  padding-left: 1rem; /* pl-4 */
+  margin-top: 0.5rem;
+}
+
+
+/* Sử dụng font Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style cho scrollbar (Tùy chọn) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+        /* Style scrollbar cho Dark Mode */
+        html.dark ::-webkit-scrollbar-track {
+            background: #2D2D2D;
+        }
+        html.dark ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        html.dark ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }

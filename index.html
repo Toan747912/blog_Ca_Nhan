@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+	<meta name="generator" content="Hugo 0.151.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<section class="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center md:space-x-12">
+        
+        <div class="flex-shrink-0 mb-8 md:mb-0">
+            <a href="/about" class="block rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl">
+                <img class="h-69 w-64 rounded-full object-cover shadow-lg" 
+                     src="/images/Avatar.jpg" 
+                     alt="Ảnh đại diện của Ngô Quốc Toàn">
+            </a>
+        </div>
+        
+        
+        <div class="text-center md:text-left">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
+                Ngô Quốc Toàn
+            </h1>
+            <p class="mt-2 text-xl text-blue-600 dark:text-blue-400 font-medium">
+                Lập trình viên Java & JavaScript
+            </p>
+            <p class="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-xl">
+                  Chào mừng đến với blog của tôi!<br>
+  Tôi là sinh viên <strong>Đại học Công nghệ TP.HCM</strong> ngành <strong>Công nghệ thông tin</strong> đam mê chia sẻ kiến thức về lập trình mạng, đặc biệt là với Java và JavaScript.
+  
+            </p>
+            
+            
+            <div class="mt-6 flex justify-center md:justify-start space-x-6">
+                <a href="https://github.com/NgoQuocToan0908" target="_blank" rel="noopener noreferrer" class="social-link text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/ng%C3%B4-qu%E1%BB%91c-to%C3%A0n-b19171255/" target="_blank" rel="noopener noreferrer" class="social-link text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                    <span class="sr-only">LinkedIn</span>
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="mt-20">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-10">
+            Chứng nhận
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div data-pdf-src="/images/Certificate/NetworkingBasics.pdf" class="certificate-item block hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4 h-full">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-md object-cover" 
+                             src="/images/Certificate/networking-basics.png"  
+                             alt="Ảnh đại diện cho Networking basics">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Networking basics</h3>
+                        <p class="mt-1 text-gray-600 dark:text-gray-300">Cisco Networking Academy</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sep 19, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div data-pdf-src="/images/Certificate/JavaScriptEssentials1.pdf" class="certificate-item block hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4 h-full">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-md object-cover" 
+                             src="/images/Certificate/javascript-essentials-1.png"  
+                             alt="Ảnh đại diện cho JavaScript Essentials 1">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">JavaScript Essentials 1</h3>
+                        <p class="mt-1 text-gray-600 dark:text-gray-300">Cisco Networking Academy</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sep 25, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div data-pdf-src="/images/Certificate/JavaScriptEssentials2.pdf" class="certificate-item block hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 p-6 flex items-start space-x-4 h-full">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-md object-cover" 
+                             src="/images/Certificate/javascript-essentials-2.png"  
+                             alt="Ảnh đại diện cho JavaScript Essentials 2">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">JavaScript Essentials 2</h3>
+                        <p class="mt-1 text-gray-600 dark:text-gray-300">Cisco Networking Academy</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Oct 13, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="pdf-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-2xl w-[95vw] h-[95vh] max-w-none flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b dark:border-gray-700">
+                <h3 id="pdf-modal-title" class="text-lg font-semibold text-gray-900 dark:text-white">Certificate Viewer</h3>
+                <button id="close-modal" class="text-3xl font-bold text-gray-500 hover:text-gray-900 dark:hover:text-white">&times;</button>
+            </div>
+            <div class="flex-grow p-2">
+                <iframe id="pdf-iframe" src="" class="w-full h-full" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

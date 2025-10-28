@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Xây dựng Ứng dụng Chat Hai chiều (Client-Server) với Java Sockets | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                Xây dựng Ứng dụng Chat Hai chiều (Client-Server) với Java Sockets
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>Java</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p><em><strong><span class="text-green">Bạn đã bao giờ tự hỏi làm thế nào các ứng dụng như Messenger, Zalo hay game online có thể gửi tin nhắn qua lại ngay lập tức?</span></strong></em> 🚀</p>
+<p>Hôm nay, chúng ta sẽ lột trần &ldquo;phép thuật&rdquo; đó. Chúng ta sẽ xây dựng một hệ thống điện thoại tư nhân đơn giản chỉ bằng Java.</p>
+<p><em><strong>Ý tưởng cốt lõi (Theo phương pháp Peyman):</strong></em> Để hai máy tính nói chuyện, chúng ta cần thiết lập một cuộc gọi điện thoại 📞.</p>
+<ul>
+<li><em><strong>Server (Máy chủ):</strong></em> Là người trực tổng đài. Người này không gọi cho ai cả. Họ cắm điện thoại vào, mở đường dây (ví dụ: máy lẻ 1234), và chờ người khác gọi đến.</li>
+<li><em><strong>Client (Máy khách):</strong></em> Là người chủ động gọi điện. Người này nhấc máy lên, bấm đúng số của tổng đài (địa chỉ IP) và đúng số máy lẻ (Port) để kết nối.</li>
+</ul>
+<p>Khi kết nối thành công, một &ldquo;cuộc gọi&rdquo; (Socket) được thiết lập. Trong cuộc gọi này:</p>
+<ul>
+<li>Bạn nói vào <em><strong>Micrô</strong></em> (đó là <code>OutputStream</code> - Luồng ra).</li>
+<li>Bạn nghe từ <em><strong>Loa</strong></em> (đó là <code>InputStream</code> - Luồng vào).</li>
+</ul>
+<p>Chúng ta sẽ xây dựng cả hai bên: Tổng đài (Server) và Người gọi (Client).</p>
+<h3 id="phần-1-xây-dựng-server-"><em><strong>Phần 1: Xây dựng Server (👷 &ldquo;Người trực tổng đài&rdquo;)</strong></em></h3>
+<p>Nhiệm vụ của Server là:</p>
+<ol>
+<li>Mở một &ldquo;Cổng&rdquo; (Port) và lắng nghe.</li>
+<li>Khi có Client gọi đến, &ldquo;nhấc máy&rdquo; (chấp nhận kết nối).</li>
+<li>Cầm lấy &ldquo;Mic&rdquo; và &ldquo;Loa&rdquo; để chuẩn bị nói chuyện.</li>
+</ol>
+<h4 id="bước-11-mở-tổng-đài-lớp"><em><strong>Bước 1.1: Mở Tổng đài (Lớp <code>ServerSocket</code>)</strong></em></h4>
+<p>Việc đầu tiên Server cần làm là nói với hệ điều hành: &ldquo;Này, tôi muốn nhận các cuộc gọi đến ở cổng số 9999.&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.ServerSocket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.Socket;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChatServer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 1. Mở tổng đài ở cổng 9999</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 9999;
+</span></span><span style="display:flex;"><span>            ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket(port);
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server đang chạy và lắng nghe ở cổng &#34;</span> <span style="color:#f92672">+</span> port);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ... (Các bước tiếp theo)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em><strong>Giải thích (Peyman):</strong></em></p>
+<ul>
+<li><code>ServerSocket serverSocket = new ServerSocket(port);</code>
+<ul>
+<li><em><strong>Analogy:</strong></em> Đây chính là hành động bạn cắm điện thoại tổng đài vào ổ điện. Bạn chưa nói chuyện, bạn chỉ mới sẵn sàng nhận cuộc gọi. Con số <code>9999</code> là số máy lẻ mà bạn chọn. Bất kỳ Client nào muốn nói chuyện với bạn đều phải quay số này.</li>
+</ul>
+</li>
+</ul>
+<h4 id="bước-12-chờ-và-nhấc-máy-hàm"><em><strong>Bước 1.2: Chờ và Nhấc máy (Hàm <code>accept()</code>)</strong></em></h4>
+<p>Tổng đài đã mở. Giờ người trực tổng đài phải ngồi&hellip; chờ.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Thêm vào sau dòng ServerSocket...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Đang chờ Client kết nối...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Chờ ai đó gọi đến. Dòng này sẽ &#34;treo&#34; (block)</span>
+</span></span><span style="display:flex;"><span>    Socket clientSocket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client đã kết nối từ: &#34;</span> <span style="color:#f92672">+</span> clientSocket.<span style="color:#a6e22e">getInetAddress</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... (Các bước tiếp theo)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>    e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em><strong>Giải thích (Peyman):</strong></em></p>
+<ul>
+<li><code>Socket clientSocket = serverSocket.accept();</code>
+<ul>
+<li><em><strong>Analogy:</strong></em> Đây là hành động quan trọng nhất. <code>accept()</code> có nghĩa là &ldquo;chấp nhận&rdquo;. Dòng code này sẽ dừng chương trình của bạn lại (giống như người trực tổng đài ngồi im nhìn vào bảng điện thoại).</li>
+<li>Chương trình sẽ chờ&hellip; cho đến khi&hellip; <em><strong>Reng! Reng!</strong></em> 🔔</li>
+<li>Khi có một Client gọi đến cổng 9999, hàm <code>accept()</code> sẽ &ldquo;nhấc máy&rdquo;.</li>
+<li>Và nó trả về một thứ cực kỳ quan trọng: một đối tượng <code>Socket</code>.</li>
+</ul>
+</li>
+</ul>
+<p><em><strong>Khoan, tại sao lại là <code>Socket</code>?</strong></em></p>
+<ul>
+<li><code>ServerSocket</code> (Tổng đài) không trực tiếp nói chuyện. Nhiệm vụ của nó chỉ là lắng nghe và nối máy.</li>
+<li><code>Socket</code> (Cuộc gọi) mới là thứ dùng để nói chuyện. <code>clientSocket</code> chính là cuộc gọi riêng mà tổng đài vừa kết nối cho bạn với vị khách đó.</li>
+</ul>
+<h4 id="bước-13-lấy"><em><strong>Bước 1.3: Lấy &ldquo;Mic&rdquo; và &ldquo;Loa&rdquo; (Streams)</strong></em></h4>
+<p>OK, đã kết nối. Giờ chúng ta cần phương tiện để nói và nghe qua cái <code>clientSocket</code> này.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.OutputStream;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ... (Thêm các import này ở đầu file)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client đã kết nối...&#34;</span>);
+</span></span><span style="display:flex;"><span>    Socket clientSocket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. Lấy luồng vào (Loa) và luồng ra (Mic)</span>
+</span></span><span style="display:flex;"><span>    InputStream input <span style="color:#f92672">=</span> clientSocket.<span style="color:#a6e22e">getInputStream</span>();
+</span></span><span style="display:flex;"><span>    OutputStream output <span style="color:#f92672">=</span> clientSocket.<span style="color:#a6e22e">getOutputStream</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... (Bước 4: Nói chuyện)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>    e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em><strong>Giải thích (Peyman):</strong></em></p>
+<ul>
+<li><code>clientSocket.getInputStream()</code>: Đây là hành động &ldquo;cầm lấy cái Loa 🔈&rdquo;. Bất cứ thứ gì Client nói (gửi), chúng ta sẽ nghe (đọc) được từ cái <code>input</code> này.</li>
+<li><code>clientSocket.getOutputStream()</code>: Đây là hành động &ldquo;cầm lấy cái Micrô 🎤&rdquo;. Bất cứ thứ gì chúng ta nói (viết) vào cái <code>output</code> này, Client sẽ nghe (đọc) được.</li>
+</ul>
+<p>Server đã sẵn sàng! Giờ chúng ta qua xây dựng Client.</p>
+<h3 id="phần-2-xây-dựng-client-"><em><strong>Phần 2: Xây dựng Client (📞 &ldquo;Người gọi điện&rdquo;)</strong></em></h3>
+<p>Nhiệm vụ của Client đơn giản hơn:</p>
+<ol>
+<li>Biết địa chỉ và cổng của Server.</li>
+<li>Chủ động &ldquo;quay số&rdquo; để kết nối.</li>
+<li>Cầm lấy &ldquo;Mic&rdquo; và &ldquo;Loa&rdquo;.</li>
+</ol>
+<h4 id="bước-21-quay-số-lớp"><em><strong>Bước 2.1: Quay số (Lớp <code>Socket</code>)</strong></em></h4>
+<p>Client không cần <code>ServerSocket</code>, vì Client không lắng nghe. Client hành động.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.Socket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.OutputStream;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChatClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 1. Quay số đến Server</span>
+</span></span><span style="display:flex;"><span>            String serverAddress <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>; <span style="color:#75715e">// Hoặc &#34;127.0.0.1&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> serverPort <span style="color:#f92672">=</span> 9999;
+</span></span><span style="display:flex;"><span>            Socket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket(serverAddress, serverPort);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Đã kết nối tới Server!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2. Lấy luồng vào (Loa) và luồng ra (Mic)</span>
+</span></span><span style="display:flex;"><span>            InputStream input <span style="color:#f92672">=</span> socket.<span style="color:#a6e22e">getInputStream</span>();
+</span></span><span style="display:flex;"><span>            OutputStream output <span style="color:#f92672">=</span> socket.<span style="color:#a6e22e">getOutputStream</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ... (Bước 3: Nói chuyện)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em><strong>Giải thích (Peyman):</strong></em></p>
+<ul>
+<li><code>Socket socket = new Socket(&quot;localhost&quot;, 9999);</code>
+<ul>
+<li><em><strong>Analogy:</strong></em> Đây chính là hành động nhấc máy và bấm số.</li>
+<li><code>&quot;localhost&quot;</code>: Là &ldquo;số điện thoại&rdquo; của Server. <code>localhost</code> là một tên đặc biệt, có nghĩa là &ldquo;chính máy tính này&rdquo;. (Vì chúng ta đang chạy cả Server và Client trên cùng 1 máy để thử). Nếu Server ở máy khác, bạn sẽ điền IP của máy đó, ví dụ <code>192.168.1.50</code>.</li>
+<li><code>9999</code>: Là &ldquo;số máy lẻ&rdquo; (Port) mà Server đang lắng nghe. Phải khớp 100% với số trên <code>ServerSocket</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Ngay khi dòng code này chạy, nó sẽ tìm đến Server. Server đang chờ ở <code>accept()</code> sẽ &ldquo;nhấc máy&rdquo;. Và <em><strong>Bùm!</strong></em> 💥 Kết nối được thiết lập.</p>
+<p>Lúc này, cả Server và Client đều có &ldquo;Mic&rdquo; (<code>OutputStream</code>) và &ldquo;Loa&rdquo; (<code>InputStream</code>).</p>
+<h3 id="phần-3-cuộc-hội-thoại-hai-chiều-nói-và-nghe"><em><strong>Phần 3: Cuộc hội thoại Hai chiều (Nói và Nghe)</strong></em></h3>
+<p>Đây là phần thú vị nhất. Chúng ta có &ldquo;Loa&rdquo; và &ldquo;Mic&rdquo;, nhưng chúng chỉ hiểu &ldquo;ngôn ngữ máy&rdquo; (bytes). Chúng ta chat bằng văn bản (String).</p>
+<p><em><strong>Vấn đề:</strong></em> Làm sao để dịch <code>String</code> (chữ) của chúng ta thành <code>byte</code> (để &ldquo;nói vào Mic&rdquo;) và dịch <code>byte</code> (từ &ldquo;Loa&rdquo;) ngược lại thành <code>String</code>?</p>
+<p><em><strong>Giải pháp:</strong></em> Chúng ta thuê &ldquo;Trợ lý&rdquo;.</p>
+<ul>
+<li><em><strong>Để Gửi tin (Nói):</strong></em> Chúng ta dùng <code>PrintWriter</code>. Nó sẽ dịch <code>String</code> của bạn thành byte và gửi đi.</li>
+<li><em><strong>Để Nhận tin (Nghe):</strong></em> Chúng ta dùng <code>BufferedReader</code> và <code>InputStreamReader</code>. Cặp đôi này sẽ hứng byte từ &ldquo;Loa&rdquo;, dịch chúng thành chữ, và ghép lại thành câu hoàn chỉnh.</li>
+</ul>
+<h4 id="bước-31-gửi-dữ-liệu-dùng-printwriter-">Bước 3.1: Gửi Dữ liệu (Dùng <code>PrintWriter</code> ✍️)</h4>
+<p>Hãy tưởng tượng <code>PrintWriter</code> là người trợ lý ghi chép. Bạn đưa cho anh ta một câu (String), anh ta sẽ mã hóa nó và hét vào Mic (<code>OutputStream</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Thêm import:</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.PrintWriter;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lấy Mic</span>
+</span></span><span style="display:flex;"><span>OutputStream output <span style="color:#f92672">=</span> socket.<span style="color:#a6e22e">getOutputStream</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thuê &#34;Trợ lý Ghi&#34; gắn vào Mic</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// true (autoFlush) nghĩa là: &#34;Nói xong câu nào gửi đi ngay lập tức!&#34;</span>
+</span></span><span style="display:flex;"><span>PrintWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrintWriter(output, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gửi tin nhắn đầu tiên</span>
+</span></span><span style="display:flex;"><span>writer.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Xin chào Server, tôi là Client!&#34;</span>);
+</span></span></code></pre></div><p><em><strong>Giải thích (Peyman):</strong></em></p>
+<ul>
+<li><code>new PrintWriter(output, true)</code>: Chúng ta &ldquo;gắn&rdquo; Trợ lý <code>PrintWriter</code> vào cái Mic <code>output</code>.</li>
+<li><code>true</code> (autoFlush): <em><strong>CỰC KỲ QUAN TRỌNG</strong></em>. Nó nghĩa là &ldquo;Gửi đi ngay!&rdquo;. Nếu bạn để là <code>false</code> (mặc định), <code>PrintWriter</code> sẽ&hellip; lười biếng. Nó sẽ gom nhiều câu của bạn lại (để tiết kiệm) rồi mới gửi đi một cục. Nhưng đây là chat, chúng ta muốn gửi ngay!</li>
+<li><code>writer.println(...)</code>: Đây là hành động &ldquo;Nói!&rdquo;. <code>println</code> tiện lợi vì nó tự động thêm dấu xuống dòng (Enter) vào cuối, báo hiệu cho bên kia biết là &ldquo;hết câu&rdquo;.</li>
+</ul>
+<h4 id="bước-32-đọc-dữ-liệu-dùng-bufferedreader-">Bước 3.2: Đọc Dữ liệu (Dùng <code>BufferedReader</code> 🎧)</h4>
+<p>Bây giờ là &ldquo;Nghe&rdquo;. Việc này cần 2 trợ lý:</p>
+<ol>
+<li><code>InputStreamReader</code>: Anh chàng này đứng sát &ldquo;Loa&rdquo; (<code>input</code>), nhặt từng byte và dịch thành ký tự (ví dụ: &lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;).</li>
+<li><code>BufferedReader</code>: Anh chàng này thông minh hơn. Anh ta đứng sau <code>InputStreamReader</code>, lấy các ký tự đó và đệm (buffer) chúng lại, cho đến khi nào gặp dấu xuống dòng (Enter), anh ta sẽ gộp tất cả lại thành một <code>String</code> (một câu hoàn chỉnh) và đưa cho bạn.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Thêm import:</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.BufferedReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStreamReader;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lấy Loa</span>
+</span></span><span style="display:flex;"><span>InputStream input <span style="color:#f92672">=</span> socket.<span style="color:#a6e22e">getInputStream</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thuê &#34;Trợ lý Đọc&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Bọc từ trong ra ngoài: input -&gt; InputStreamReader -&gt; BufferedReader</span>
+</span></span><span style="display:flex;"><span>BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(input));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Chờ nghe một câu...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Dòng này lại &#34;treo&#34; (block) cho đến khi có tin nhắn!</span>
+</span></span><span style="display:flex;"><span>String line <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tin nhắn nhận được: &#34;</span> <span style="color:#f92672">+</span> line);
+</span></span></code></pre></div><p><em><strong>Giải thích (Peyman):</strong></em></p>
+<ul>
+<li><code>reader.readLine()</code>: Tương tự <code>accept()</code>, đây là một hàm <em><strong>blocking</strong></em>. Nó sẽ ngồi im, &ldquo;ghé tai vào Loa&rdquo;, và chờ&hellip; chờ&hellip;</li>
+<li>Khi <code>PrintWriter</code> ở bên kia dùng <code>println()</code> gửi một câu, <code>readLine()</code> sẽ nhận được nó, trả về câu đó dưới dạng <code>String</code> (ví dụ: &ldquo;Xin chào Server, tôi là Client!&rdquo;), và chương trình tiếp tục chạy.</li>
+</ul>
+<h3 id="phần-4-vấn-đề-cực-lớn-và-giải-pháp"><em><strong>Phần 4: Vấn đề Cực lớn (Và Giải pháp)</strong></em></h3>
+<p>Chúng ta đã có đủ công cụ. Giờ hãy thử ghép chúng lại.</p>
+<p>Nếu Server làm thế này:</p>
+<ol>
+<li>Đọc tin nhắn từ Client (<code>reader.readLine()</code>)</li>
+<li>In ra màn hình.</li>
+<li>Gõ trả lời (<code>writer.println()</code>)</li>
+</ol>
+<p>Client cũng làm thế này:</p>
+<ol>
+<li>Gõ gửi tin nhắn (<code>writer.println()</code>)</li>
+<li>Chờ Server trả lời (<code>reader.readLine()</code>)</li>
+<li>In ra màn hình.</li>
+</ol>
+<p>Bạn thấy vấn đề không? Nó giống như hai người dùng bộ đàm (walkie-talkie). Một người phải nói &ldquo;Over!&rdquo; (Hết) thì người kia mới được nói. Cả hai không thể nói cùng một lúc.</p>
+<p>Nếu cả hai cùng chạy <code>reader.readLine()</code> (cùng ghé tai vào Loa), cả hai sẽ cùng chờ&hellip; và không ai nói cả! 😵 Đây gọi là <em><strong>Deadlock</strong></em>.</p>
+<p><em><strong>Giải pháp (Đây là bí mật của ứng dụng chat):</strong></em> Chúng ta cần <em><strong>Đa luồng (Threading)</strong></em>. Nghe có vẻ đáng sợ, nhưng ý tưởng rất đơn giản:</p>
+<p>Hãy tưởng tượng bạn (chương trình chính) phân thân ra làm hai.</p>
+<ul>
+<li><em><strong>Bản thể 1 (Luồng chính - Main Thread):</strong></em> Chỉ làm một việc: Chờ bạn gõ phím. Khi bạn gõ xong và Enter, nó dùng <code>PrintWriter</code> (Mic) để gửi đi.</li>
+<li><em><strong>Bản thể 2 (Luồng mới - New Thread):</strong></em> Chỉ làm một việc: Chạy một vòng lặp vĩnh viễn <code>while(true)</code>, liên tục &ldquo;ghé tai vào Loa&rdquo; (<code>reader.readLine()</code>). Hễ nghe được gì, nó lập tức in ra màn hình.</li>
+</ul>
+<p>Bằng cách này, bạn có thể vừa gõ tin nhắn của mình (ở Luồng 1) trong khi vẫn nhận được tin nhắn của người khác (ở Luồng 2) ngay lập tức. Đó mới là chat!</p>
+<h3 id="phần-5-code-hoàn-chỉnh-ghép-tất-cả-lại"><em><strong>Phần 5: Code Hoàn chỉnh (Ghép tất cả lại)</strong></em></h3>
+<p>Đây là code cuối cùng cho một ứng dụng chat 2 chiều thực sự.</p>
+<h4 id="-chatserverjava-tổng-đài">📁 ChatServer.java (Tổng đài)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.ServerSocket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.Socket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChatServer</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket(9999)) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server đang chờ kết nối ở cổng 9999...&#34;</span>);
+</span></span><span style="display:flex;"><span>            Socket clientSocket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client đã kết nối!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Cầm lấy &#34;Loa&#34; và &#34;Mic&#34;</span>
+</span></span><span style="display:flex;"><span>            BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(clientSocket.<span style="color:#a6e22e">getInputStream</span>()));
+</span></span><span style="display:flex;"><span>            PrintWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrintWriter(clientSocket.<span style="color:#a6e22e">getOutputStream</span>(), <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Bắt đầu &#34;Luồng Nghe&#34; (Bản thể 2)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Chúng ta tạo một &#34;nhân viên&#34; mới chỉ để nghe</span>
+</span></span><span style="display:flex;"><span>            Thread listenThread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(() <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    String clientMessage;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">while</span> ((clientMessage <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readLine</span>()) <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client nói: &#34;</span> <span style="color:#f92672">+</span> clientMessage);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client đã ngắt kết nối.&#34;</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            listenThread.<span style="color:#a6e22e">start</span>(); <span style="color:#75715e">// Cho &#34;nhân viên&#34; bắt đầu làm việc</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Luồng chính (Bản thể 1) dùng để &#34;Nói&#34;</span>
+</span></span><span style="display:flex;"><span>            Scanner consoleScanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(System.<span style="color:#a6e22e">in</span>);
+</span></span><span style="display:flex;"><span>            String serverMessage;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>                serverMessage <span style="color:#f92672">=</span> consoleScanner.<span style="color:#a6e22e">nextLine</span>();
+</span></span><span style="display:flex;"><span>                writer.<span style="color:#a6e22e">println</span>(serverMessage); <span style="color:#75715e">// Gửi đi</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="-chatclientjava-người-gọi">📁 ChatClient.java (Người gọi)</h4>
+<p>Code của Client gần như giống hệt Server, chỉ khác ở bước kết nối ban đầu.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.Socket;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChatClient</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (Socket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket(<span style="color:#e6db74">&#34;localhost&#34;</span>, 9999)) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Đã kết nối tới Server!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Cầm lấy &#34;Loa&#34; và &#34;Mic&#34;</span>
+</span></span><span style="display:flex;"><span>            BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(socket.<span style="color:#a6e22e">getInputStream</span>()));
+</span></span><span style="display:flex;"><span>            PrintWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrintWriter(socket.<span style="color:#a6e22e">getOutputStream</span>(), <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Bắt đầu &#34;Luồng Nghe&#34; (Bản thể 2)</span>
+</span></span><span style="display:flex;"><span>            Thread listenThread <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(() <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    String serverMessage;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">while</span> ((serverMessage <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readLine</span>()) <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server nói: &#34;</span> <span style="color:#f92672">+</span> serverMessage);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server đã ngắt kết nối.&#34;</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            listenThread.<span style="color:#a6e22e">start</span>(); <span style="color:#75715e">// Cho &#34;nhân viên&#34; bắt đầu làm việc</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Luồng chính (Bản thể 1) dùng để &#34;Nói&#34;</span>
+</span></span><span style="display:flex;"><span>            Scanner consoleScanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(System.<span style="color:#a6e22e">in</span>);
+</span></span><span style="display:flex;"><span>            String clientMessage;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>                clientMessage <span style="color:#f92672">=</span> consoleScanner.<span style="color:#a6e22e">nextLine</span>();
+</span></span><span style="display:flex;"><span>                writer.<span style="color:#a6e22e">println</span>(clientMessage); <span style="color:#75715e">// Gửi đi</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="cách-chạy-thử">Cách chạy thử</h3>
+<ol>
+<li>Mở 2 cửa sổ terminal (hoặc 2 tab trong IDE của bạn).</li>
+<li>Biên dịch cả 2 file: <code>javac ChatServer.java</code> và <code>javac ChatClient.java</code>.</li>
+<li><em><strong>Cửa sổ 1:</strong></em> Chạy Server trước: <code>java ChatServer</code>
+<ul>
+<li>Bạn sẽ thấy: <code>Server đang chờ kết nối ở cổng 9999...</code></li>
+</ul>
+</li>
+<li><em><strong>Cửa sổ 2:</strong></em> Chạy Client: <code>java ChatClient</code>
+<ul>
+<li>Bạn sẽ thấy: <code>Đã kết nối tới Server!</code></li>
+<li>Đồng thời, Cửa sổ 1 sẽ hiển thị: <code>Client đã kết nối!</code></li>
+</ul>
+</li>
+</ol>
+<p>Bây giờ, hãy gõ bất cứ thứ gì vào một cửa sổ và nhấn Enter. Nó sẽ xuất hiện ngay lập tức ở cửa sổ bên kia!</p>
+<p>Bạn đã làm được rồi đó! Bạn vừa xây dựng một ứng dụng chat hai chiều từ con số 0, hiểu rõ từng bước một. 🎉</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#phần-1-xây-dựng-server-"><em><strong>Phần 1: Xây dựng Server (👷 “Người trực tổng đài”)</strong></em></a></li>
+        <li><a href="#phần-2-xây-dựng-client-"><em><strong>Phần 2: Xây dựng Client (📞 “Người gọi điện”)</strong></em></a></li>
+        <li><a href="#phần-3-cuộc-hội-thoại-hai-chiều-nói-và-nghe"><em><strong>Phần 3: Cuộc hội thoại Hai chiều (Nói và Nghe)</strong></em></a></li>
+        <li><a href="#phần-4-vấn-đề-cực-lớn-và-giải-pháp"><em><strong>Phần 4: Vấn đề Cực lớn (Và Giải pháp)</strong></em></a></li>
+        <li><a href="#phần-5-code-hoàn-chỉnh-ghép-tất-cả-lại"><em><strong>Phần 5: Code Hoàn chỉnh (Ghép tất cả lại)</strong></em></a></li>
+        <li><a href="#cách-chạy-thử">Cách chạy thử</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node.js on Blog | Ngô Quốc Toàn</title>
+    <link>https://ngoquctoan0908.github.io/categories/node.js/</link>
+    <description>Recent content in Node.js on Blog | Ngô Quốc Toàn</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ngoquctoan0908.github.io/categories/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express</title>
+      <link>https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/</guid>
+      <description>&lt;p&gt;Chúng ta sẽ xây dựng một &amp;ldquo;Nhà bếp&amp;rdquo; (Server) bằng JavaScript, sẵn sàng nhận &amp;ldquo;Đơn hàng&amp;rdquo; (HTTP Requests) từ &amp;ldquo;Người phục vụ&amp;rdquo; (Fetch API) mà chúng ta đã học.&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-bước-1-xin&#34;&gt;&lt;em&gt;1. Bước 1: Xin &amp;ldquo;Giấy phép Kinh doanh&amp;rdquo; (Khởi tạo dự án Node.js)&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;p&gt;Trước khi thuê &amp;ldquo;Trợ lý&amp;rdquo;, bạn cần đăng ký &amp;ldquo;Nhà hàng&amp;rdquo; của mình.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Tạo một thư mục mới cho dự án: &lt;code&gt;mkdir my-express-server&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Đi vào thư mục đó: &lt;code&gt;cd my-express-server&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Chạy lệnh sau:&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm init -y&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Giải thích (Peyman):&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>&#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js</title>
+      <link>https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/</guid>
+      <description>&lt;p&gt;Ở các bài trước, chúng ta đã xây dựng một &amp;ldquo;Nhà hàng&amp;rdquo; (Server) hoạt động theo kiểu REST API.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Vấn đề của REST API (Kiểu Bồi bàn 🤵):&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Khách (Client) muốn gì, phải gọi Bồi bàn: &amp;ldquo;Cho tôi ly nước!&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Bồi bàn (HTTP Request) chạy vào bếp, lấy nước, mang ra, rồi&amp;hellip; biến mất.&lt;/li&gt;&#xA;&lt;li&gt;Khách muốn thêm đá? Phải gọi Bồi bàn một lần nữa.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Vấn đề lớn nhất:&lt;/strong&gt; Bếp (Server) làm xong món, không thể tự mang ra. Bếp phải chờ Bồi bàn vào hỏi: &amp;ldquo;Món xong chưa?&amp;rdquo;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Đây là kiểu &lt;strong&gt;Hỏi-Đáp (Request-Response)&lt;/strong&gt;. Nó hoạt động, nhưng rất chậm và &amp;ldquo;phiền phức&amp;rdquo; cho các ứng dụng cần liên tục, như Chat, Game, hay xem Tỷ số Trực tiếp.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

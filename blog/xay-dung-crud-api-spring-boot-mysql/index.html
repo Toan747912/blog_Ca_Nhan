@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Xây dựng Kho hàng API: CRUD hoàn chỉnh với Spring Boot &amp; MySQL | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                Xây dựng Kho hàng API: CRUD hoàn chỉnh với Spring Boot &amp; MySQL
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>Java</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p>Ở bài trước, chúng ta đã xây dựng một &ldquo;Nhà hàng&rdquo; (Spring Boot) với một &ldquo;Người phục vụ&rdquo; (@RestController) chỉ biết nói &ldquo;Hello, World!&rdquo;.</p>
+<p>Giờ là lúc nâng cấp! Một nhà hàng thực thụ cần có một <strong>&ldquo;Kho hàng&rdquo; (Pantry)</strong> 🗄️ (chính là Cơ sở dữ liệu MySQL) để lưu trữ, thêm, sửa, và xóa &ldquo;nguyên liệu&rdquo; (dữ liệu).</p>
+<p>Chúng ta sẽ xây dựng một hệ thống quản lý &ldquo;Người dùng&rdquo; (User) với đầy đủ 4 hoạt động:</p>
+<ul>
+<li><strong>C</strong>reate (Thêm một người dùng mới)</li>
+<li><strong>R</strong>ead (Xem một hoặc tất cả người dùng)</li>
+<li><strong>U</strong>pdate (Cập nhật thông tin người dùng)</li>
+<li><strong>D</strong>elete (Xóa một người dùng)</li>
+</ul>
+<h3 id="1-phép-loại-suy-cốt-lõi-đội-ngũ"><em>1. Phép loại suy Cốt lõi: Đội ngũ &ldquo;Back of House&rdquo;</em></h3>
+<p>Để nhà hàng chạy trơn tru, chúng ta không thể để &ldquo;Người phục vụ&rdquo; chạy thẳng vào kho lấy đồ. Chúng ta cần một đội ngũ chuyên nghiệp, mỗi người một việc:</p>
+<ul>
+<li>
+<p><strong><code>@RestController</code> (Bồi bàn 💁):</strong></p>
+<ul>
+<li>Vẫn là người duy nhất nói chuyện với &ldquo;Thực khách&rdquo; (Client).</li>
+<li>Nhận yêu cầu (HTTP Request) và chuyển đơn hàng vào cho Bếp trưởng.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>@Service</code> (Bếp trưởng 🧑‍🍳):</strong></p>
+<ul>
+<li>Đây là &ldquo;não&rdquo; của hệ thống.</li>
+<li>Nhận đơn từ &ldquo;Bồi bàn&rdquo;.</li>
+<li>Xử lý tất cả logic nghiệp vụ (ví dụ: &ldquo;Kiểm tra xem email này đã tồn tại chưa?&rdquo;, &ldquo;Mật khẩu có đủ mạnh không?&rdquo;).</li>
+<li>Ra lệnh cho &ldquo;Quản kho&rdquo; để lấy hoặc cất đồ.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>@Repository</code> (Quản kho 🗃️):</strong></p>
+<ul>
+<li>Đây là người duy nhất được phép &ldquo;chạm&rdquo; vào kho hàng.</li>
+<li>Nhận lệnh đơn giản từ &ldquo;Bếp trưởng&rdquo; (e.g., &ldquo;Lấy hộp 5&rdquo;, &ldquo;Cất hộp này&rdquo;).</li>
+<li>Anh ta không cần biết tại sao, chỉ biết làm thế nào để lấy/cất (chạy lệnh SQL).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>@Entity</code> (Hộp đựng Nguyên liệu 📦):</strong></p>
+<ul>
+<li>Là &ldquo;khuôn mẫu&rdquo; cho một &ldquo;hộp&rdquo; hàng trong kho.</li>
+<li>Ví dụ, một hộp <code>User</code> phải có 3 nhãn: <code>id</code>, <code>name</code>, và <code>email</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>MySQL (Kho hàng Vật lý 🗄️):</strong></p>
+<ul>
+<li>Nơi tất cả các &ldquo;Hộp đựng&rdquo; (Entity) được lưu trữ vật lý.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-bước-1-chuẩn-bị"><em>2. Bước 1: Chuẩn bị &ldquo;Nguyên liệu&rdquo; và &ldquo;Địa chỉ Kho&rdquo;</em></h3>
+<p>Chúng ta cần báo cho &ldquo;Nhà bếp&rdquo; (Spring Boot) 2 thứ: (1) &ldquo;Công cụ quản lý kho&rdquo; và (2) &ldquo;Địa chỉ kho&rdquo;.</p>
+<h4 id="a-thêm"><em>A. Thêm &ldquo;Nguyên liệu&rdquo; (Dependencies)</em></h4>
+<p>Mở file <code>pom.xml</code> của bạn (file &ldquo;danh sách nguyên liệu&rdquo; của Maven) và thêm 2 &ldquo;nguyên liệu&rdquo; mới này vào trong thẻ <code>&lt;dependencies&gt;</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>mysql<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>mysql-connector-java<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;scope&gt;</span>runtime<span style="color:#f92672">&lt;/scope&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>(Đừng quên <code>Spring Web</code> mà chúng ta đã thêm ở bài trước nhé!)</p>
+<h4 id="b-ghi"><em>B. Ghi &ldquo;Địa chỉ Kho&rdquo; (Config)</em></h4>
+<p>Mở file <code>src/main/resources/application.properties</code> (Cuốn sổ tay của nhà hàng) và dán &ldquo;địa chỉ kho&rdquo; của bạn vào:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#75715e"># Địa chỉ kho (Database URL)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># jdbc:mysql://localhost:3306/db_name</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (Hãy thay db_name bằng tên database của bạn. Bạn phải tự tạo DB này trước.)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">jdbc:mysql://localhost:3306/user_management_db</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tên đăng nhập và mật khẩu vào kho</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.username</span><span style="color:#f92672">=</span><span style="color:#e6db74">root</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.password</span><span style="color:#f92672">=</span><span style="color:#e6db74">password_cua_ban</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (Phần này là &#34;phép thuật&#34; của JPA)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tự động cập nhật &#34;kho&#34; (DB) dựa trên &#34;hộp đựng&#34; (Entity)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.hibernate.ddl-auto</span><span style="color:#f92672">=</span><span style="color:#e6db74">update</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cho phép xem các lệnh SQL mà &#34;Quản kho&#34; đang chạy</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.show-sql</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+</span></span></code></pre></div><h3 id="3-bước-2-thiết-kế"><em>3. Bước 2: Thiết kế &ldquo;Hộp đựng&rdquo; (Tạo Model <code>@Entity</code>)</em></h3>
+<p>Chúng ta cần định nghĩa xem một &ldquo;hộp&rdquo; <code>User</code> trông như thế nào.</p>
+<p>Tạo một package mới tên là <code>model</code> (hoặc <code>entity</code>) và tạo file <code>User.java</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.demo.model;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> jakarta.persistence.Entity;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> jakarta.persistence.GeneratedValue;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> jakarta.persistence.GenerationType;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> jakarta.persistence.Id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Báo rằng đây là một &#34;Hộp đựng&#34; sẽ được cất vào kho</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Đây là &#34;nhãn ID&#34; duy nhất trên hộp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. Bảo &#34;Quản kho&#34; tự động dán nhãn ID tăng dần (1, 2, 3...)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">IDENTITY</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Các &#34;nhãn&#34; thông tin khác trên hộp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String email;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cần 1 constructor rỗng và các getters/setters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// (Bạn có thể tự động sinh chúng bằng IDE)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span>() {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters and Setters...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getId</span>() { <span style="color:#66d9ef">return</span> id; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setId</span>(Long id) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span>() { <span style="color:#66d9ef">return</span> name; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span>(String name) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getEmail</span>() { <span style="color:#66d9ef">return</span> email; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setEmail</span>(String email) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">email</span> <span style="color:#f92672">=</span> email; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="4-bước-3-thuê"><em>4. Bước 3: Thuê &ldquo;Quản kho&rdquo; (Tạo <code>@Repository</code>)</em></h3>
+<p>Đây là phần kỳ diệu nhất. Chúng ta sẽ &ldquo;thuê&rdquo; một &ldquo;Quản kho&rdquo; chuyên nghiệp từ Spring Data JPA.</p>
+<p>Tạo package mới tên là <code>repository</code> và tạo file <code>UserRepository.java</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.demo.repository;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.demo.model.User;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.jpa.repository.JpaRepository;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.stereotype.Repository;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Đánh dấu đây là &#34;Quản kho&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Repository</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Đây là một &#34;Bản hợp đồng&#34; thuê Quản kho</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">UserRepository</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>User, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... để trống!</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Giải thích (Peyman):</strong></p>
+<ul>
+<li><code>public interface UserRepository...</code>: Chúng ta chỉ cần tạo một &ldquo;bản hợp đồng&rdquo; (interface).</li>
+<li><code>extends JpaRepository&lt;User, Long&gt;</code>: Đây là điều khoản: &ldquo;Tôi muốn thuê một Quản kho (<code>JpaRepository</code>) chuyên nghiệp. Anh ta phải chuyên về &ldquo;hộp&rdquo; <code>User</code>, và &ldquo;nhãn ID&rdquo; của hộp đó là kiểu <code>Long</code>.&rdquo;</li>
+</ul>
+<p>Và&hellip; <strong>XONG!</strong> 🎩✨</p>
+<p>Chỉ bằng một dòng này, Spring Data JPA sẽ tự động viết code và đưa cho &ldquo;Quản kho&rdquo; của bạn tất cả các kỹ năng cơ bản:</p>
+<ul>
+<li><code>save(user)</code> (Cất/Cập nhật hộp)</li>
+<li><code>findById(id)</code> (Tìm hộp theo ID)</li>
+<li><code>findAll()</code> (Lấy tất cả các hộp)</li>
+<li><code>deleteById(id)</code> (Hủy hộp theo ID)</li>
+</ul>
+<p>Bạn không cần viết một dòng SQL nào!</p>
+<h3 id="5-bước-4-thuê"><em>5. Bước 4: Thuê &ldquo;Bếp trưởng&rdquo; (Tạo <code>@Service</code>)</em></h3>
+<p>Đây là &ldquo;não&rdquo;. &ldquo;Bếp trưởng&rdquo; sẽ xử lý logic và ra lệnh cho &ldquo;Quản kho&rdquo;.</p>
+<p>Tạo package mới tên là <code>service</code> và tạo file <code>UserService.java</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.demo.service;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.demo.model.User;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.demo.repository.UserRepository;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Autowired;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.stereotype.Service;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Đánh dấu đây là &#34;Bếp trưởng&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. &#34;Gọi&#34; (tiêm) anh &#34;Quản kho&#34; vào để sai việc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> UserRepository userRepository;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- Các phương thức CRUD ---</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// CREATE</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">createUser</span>(User user) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// (Logic nghiệp vụ có thể thêm ở đây, ví dụ: kiểm tra email)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userRepository.<span style="color:#a6e22e">save</span>(user); <span style="color:#75715e">// &#34;Quản kho, cất cái này!&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// READ (All)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getAllUsers</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userRepository.<span style="color:#a6e22e">findAll</span>(); <span style="color:#75715e">// &#34;Quản kho, lấy hết!&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// READ (One by ID)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">getUserById</span>(Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;Quản kho, tìm hộp ID này!&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// orElse(null) nghĩa là &#34;Nếu không tìm thấy thì trả về null&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userRepository.<span style="color:#a6e22e">findById</span>(id).<span style="color:#a6e22e">orElse</span>(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// UPDATE</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">updateUser</span>(Long id, User userDetails) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. Tìm hộp cũ</span>
+</span></span><span style="display:flex;"><span>        User user <span style="color:#f92672">=</span> userRepository.<span style="color:#a6e22e">findById</span>(id).<span style="color:#a6e22e">orElse</span>(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (user <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2. Đây là logic: Cập nhật thông tin từ hộp mới</span>
+</span></span><span style="display:flex;"><span>            user.<span style="color:#a6e22e">setName</span>(userDetails.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>            user.<span style="color:#a6e22e">setEmail</span>(userDetails.<span style="color:#a6e22e">getEmail</span>());
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 3. &#34;Quản kho, cất lại hộp đã cập nhật!&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> userRepository.<span style="color:#a6e22e">save</span>(user);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// Không tìm thấy</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// DELETE</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deleteUser</span>(Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;Quản kho, hủy hộp ID này!&#34;</span>
+</span></span><span style="display:flex;"><span>        userRepository.<span style="color:#a6e22e">deleteById</span>(id);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="6-bước-5-cập-nhật"><em>6. Bước 5: Cập nhật &ldquo;Thực đơn&rdquo; (Tạo <code>@RestController</code>)</em></h3>
+<p>Cuối cùng, chúng ta dạy cho &ldquo;Bồi bàn&rdquo; cách nhận 4 loại đơn hàng CRUD.</p>
+<p>Tạo package <code>controller</code> và file <code>UserController.java</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.demo.controller;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.demo.model.User;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.example.demo.service.UserService;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Autowired;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Đánh dấu đây là &#34;Bồi bàn&#34; API</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Tất cả &#34;món&#34; này đều bắt đầu bằng &#34;/api/users&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RequestMapping</span>(<span style="color:#e6db74">&#34;/api/users&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. &#34;Gọi&#34; (tiêm) &#34;Bếp trưởng&#34; vào để chuyển đơn</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> UserService userService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 1. CREATE (POST /api/users)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thực khách (Client) gửi yêu cầu TẠO MỚI</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostMapping</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">createUser</span>(<span style="color:#a6e22e">@RequestBody</span> User user) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;@RequestBody&#34; = Lấy &#34;món&#34; (dữ liệu JSON) từ yêu cầu của khách</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userService.<span style="color:#a6e22e">createUser</span>(user); <span style="color:#75715e">// Chuyển đơn cho Bếp trưởng</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. READ All (GET /api/users)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thực khách muốn XEM toàn bộ thực đơn</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getAllUsers</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userService.<span style="color:#a6e22e">getAllUsers</span>(); <span style="color:#75715e">// Chuyển đơn cho Bếp trưởng</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. READ One (GET /api/users/{id})</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thực khách muốn XEM món số {id}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">getUserById</span>(<span style="color:#a6e22e">@PathVariable</span> Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;@PathVariable&#34; = Lấy &#34;số món&#34; (id) từ đường dẫn</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userService.<span style="color:#a6e22e">getUserById</span>(id); <span style="color:#75715e">// Chuyển đơn cho Bếp trưởng</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 4. UPDATE (PUT /api/users/{id})</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thực khách muốn THAY ĐỔI món số {id}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PutMapping</span>(<span style="color:#e6db74">&#34;/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">updateUser</span>(<span style="color:#a6e22e">@PathVariable</span> Long id, <span style="color:#a6e22e">@RequestBody</span> User userDetails) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> userService.<span style="color:#a6e22e">updateUser</span>(id, userDetails); <span style="color:#75715e">// Chuyển đơn</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 5. DELETE (DELETE /api/users/{id})</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Thực khách muốn HỦY món số {id}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@DeleteMapping</span>(<span style="color:#e6db74">&#34;/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deleteUser</span>(<span style="color:#a6e22e">@PathVariable</span> Long id) {
+</span></span><span style="display:flex;"><span>        userService.<span style="color:#a6e22e">deleteUser</span>(id); <span style="color:#75715e">// Chuyển đơn</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="tổng-kết">Tổng kết</h3>
+<p>Bạn đã làm được! 🚀</p>
+<p>Hãy chạy lại ứng dụng (file <code>...Application.java</code>). Giờ đây, &ldquo;Nhà hàng&rdquo; của bạn đã có một hệ thống &ldquo;Kho hàng&rdquo; hoàn chỉnh:</p>
+<p>Bạn có thể dùng <strong>Postman</strong> (hoặc công cụ khác) để:</p>
+<ul>
+<li><strong>POST</strong> đến <code>http://localhost:8080/api/users</code> (với JSON) để tạo User.</li>
+<li><strong>GET</strong> từ <code>http://localhost:8080/api/users</code> để xem tất cả.</li>
+<li><strong>GET</strong> từ <code>http://localhost:8080/api/users/1</code> để xem User 1.</li>
+<li><strong>PUT</strong> đến <code>http://localhost:8080/api/users/1</code> (với JSON) để sửa.</li>
+<li><strong>DELETE</strong> đến <code>http://localhost:8080/api/users/1</code> để xóa.</li>
+</ul>
+<p>Bạn đã xây dựng một API RESTful CRUD hoàn chỉnh, và quan trọng nhất là bạn đã tổ chức code của mình theo một kiến trúc 4 lớp (Controller, Service, Repository, Entity) sạch sẽ, chuyên nghiệp, và dễ bảo trì.</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-phép-loại-suy-cốt-lõi-đội-ngũ"><em>1. Phép loại suy Cốt lõi: Đội ngũ “Back of House”</em></a></li>
+        <li><a href="#2-bước-1-chuẩn-bị"><em>2. Bước 1: Chuẩn bị “Nguyên liệu” và “Địa chỉ Kho”</em></a></li>
+        <li><a href="#3-bước-2-thiết-kế"><em>3. Bước 2: Thiết kế “Hộp đựng” (Tạo Model <code>@Entity</code>)</em></a></li>
+        <li><a href="#4-bước-3-thuê"><em>4. Bước 3: Thuê “Quản kho” (Tạo <code>@Repository</code>)</em></a></li>
+        <li><a href="#5-bước-4-thuê"><em>5. Bước 4: Thuê “Bếp trưởng” (Tạo <code>@Service</code>)</em></a></li>
+        <li><a href="#6-bước-5-cập-nhật"><em>6. Bước 5: Cập nhật “Thực đơn” (Tạo <code>@RestController</code>)</em></a></li>
+        <li><a href="#tổng-kết">Tổng kết</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

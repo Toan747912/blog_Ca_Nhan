@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Blog | Ngô Quốc Toàn</title>
+    <link>https://ngoquctoan0908.github.io/categories/java/</link>
+    <description>Recent content in Java on Blog | Ngô Quốc Toàn</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ngoquctoan0908.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nhập môn Lập trình Mạng với Java</title>
+      <link>https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/</guid>
+      <description>&lt;h2 id=&#34;1-ý-tưởng-cốt-lõi-lập-trình-mạng-là-gì&#34;&gt;&lt;strong&gt;1. Ý tưởng Cốt lõi: Lập trình Mạng là gì?&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Trước khi nói về code, hãy tưởng tượng Lập trình Mạng giống như việc bạn &lt;em&gt;&lt;strong&gt;dạy cho hai máy tính cách nói chuyện với nhau&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Giống như con người, để nói chuyện, chúng cần:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Một &lt;em&gt;&lt;strong&gt;ngôn ngữ chung&lt;/strong&gt;&lt;/em&gt; (Giống như tiếng Việt, tiếng Anh).&lt;/li&gt;&#xA;&lt;li&gt;Một &lt;em&gt;&lt;strong&gt;cách thức liên lạc&lt;/strong&gt;&lt;/em&gt; (Như gọi điện thoại, gửi thư tay, hay nói chuyện trực tiếp).&lt;/li&gt;&#xA;&lt;li&gt;Một &lt;em&gt;&lt;strong&gt;địa chỉ&lt;/strong&gt;&lt;/em&gt; để tìm thấy nhau (Như địa chỉ nhà hay số điện thoại).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Lập trình mạng là việc bạn viết ra các chỉ dẫn (code) để thiết lập tất cả những quy tắc này, cho phép các chương trình trên các máy tính khác nhau trao đổi thông tin qua Internet hoặc mạng nội bộ.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xây dựng Ứng dụng Chat Hai chiều (Client-Server) với Java Sockets</title>
+      <link>https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/</guid>
+      <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span class=&#34;text-green&#34;&gt;Bạn đã bao giờ tự hỏi làm thế nào các ứng dụng như Messenger, Zalo hay game online có thể gửi tin nhắn qua lại ngay lập tức?&lt;/span&gt;&lt;/strong&gt;&lt;/em&gt; 🚀&lt;/p&gt;&#xA;&lt;p&gt;Hôm nay, chúng ta sẽ lột trần &amp;ldquo;phép thuật&amp;rdquo; đó. Chúng ta sẽ xây dựng một hệ thống điện thoại tư nhân đơn giản chỉ bằng Java.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;Ý tưởng cốt lõi (Theo phương pháp Peyman):&lt;/strong&gt;&lt;/em&gt; Để hai máy tính nói chuyện, chúng ta cần thiết lập một cuộc gọi điện thoại 📞.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tìm hiểu UDP Sockets trong Java: Gửi Bưu thiếp Siêu tốc</title>
+      <link>https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/</guid>
+      <description>&lt;p&gt;Bạn đã biết về TCP Sockets—giống như một cuộc gọi điện thoại 📞. Nó đáng tin cậy, có trật tự, nhưng lại &amp;ldquo;nặng nề&amp;rdquo; và tốn thời gian thiết lập.&lt;/p&gt;&#xA;&lt;p&gt;Bây giờ, hãy làm quen với &amp;ldquo;người anh em&amp;rdquo; nhanh nhẹn nhưng&amp;hellip; hơi cẩu thả của nó: &lt;strong&gt;UDP&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;ý-tưởng-cốt-lõi-theo-phương-pháp-peyman-udp-user-datagram-protocol-giống-hệt-như-việc-bạn-gửi-một-tấm&#34;&gt;&lt;em&gt;Ý tưởng cốt lõi (Theo phương pháp Peyman): UDP (User Datagram Protocol) giống hệt như việc bạn gửi một tấm &lt;strong&gt;bưu thiếp (postcard)&lt;/strong&gt; ✉️.&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Không kết nối:&lt;/strong&gt; Bạn không cần gọi điện để &amp;ldquo;thiết lập cuộc gọi&amp;rdquo; trước. Bạn chỉ cần viết địa chỉ người nhận lên bưu thiếp và&amp;hellip; gửi.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Nhanh và nhẹ:&lt;/strong&gt; Không cần &amp;ldquo;alo&amp;rdquo;, không cần &amp;ldquo;tạm biệt&amp;rdquo;. Chỉ cần gửi!&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Không đáng tin cậy:&lt;/strong&gt; Bưu thiếp của bạn có thể bị thất lạc trên đường đi. Bạn sẽ không bao giờ biết trừ khi người nhận gửi lại một tấm bưu thiếp khác.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Không theo thứ tự:&lt;/strong&gt; Nếu bạn gửi 3 tấm bưu thiếp (Tin 1, Tin 2, Tin 3), người nhận có thể nhận được chúng theo thứ tự: Tin 2, Tin 3, Tin 1.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;UDP là lựa chọn hoàn hảo khi &lt;strong&gt;tốc độ là vua&lt;/strong&gt; và việc mất một vài &amp;ldquo;mẩu tin&amp;rdquo; không phải là tận thế.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nâng cấp Đường ống: Giới thiệu REST API và xây dựng API đầu tiên với Spring Boot</title>
+      <link>https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/</guid>
+      <description>&lt;p&gt;Ở các bài trước, chúng ta đã học cách &amp;ldquo;nói chuyện&amp;rdquo; ở mức độ thấp (Socket). Giờ là lúc để &amp;ldquo;nâng cấp&amp;rdquo; lên một kiến trúc cấp cao hơn, nơi chúng ta không còn lo về &lt;code&gt;InputStream&lt;/code&gt; hay &lt;code&gt;DatagramPacket&lt;/code&gt;, mà tập trung vào logic nghiệp vụ.&lt;/p&gt;&#xA;&lt;p&gt;Chào mừng bạn đến với &lt;strong&gt;RESTful API&lt;/strong&gt;!&lt;/p&gt;&#xA;&lt;h3 id=&#34;1&#34;&gt;&lt;em&gt;1. &amp;ldquo;Vòi nước&amp;rdquo; REST là gì?&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;p&gt;REST (REpresentational State Transfer) không phải là một ngôn ngữ hay công cụ. Nó là một &lt;strong&gt;&amp;ldquo;phong cách thiết kế&amp;rdquo;&lt;/strong&gt; hay một bộ quy tắc để thiết kế các &amp;ldquo;vòi nước&amp;rdquo; (API) sao cho chúng thật đơn giản, dễ hiểu và dễ sử dụng.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xây dựng Kho hàng API: CRUD hoàn chỉnh với Spring Boot &amp; MySQL</title>
+      <link>https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/</guid>
+      <description>&lt;p&gt;Ở bài trước, chúng ta đã xây dựng một &amp;ldquo;Nhà hàng&amp;rdquo; (Spring Boot) với một &amp;ldquo;Người phục vụ&amp;rdquo; (@RestController) chỉ biết nói &amp;ldquo;Hello, World!&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;Giờ là lúc nâng cấp! Một nhà hàng thực thụ cần có một &lt;strong&gt;&amp;ldquo;Kho hàng&amp;rdquo; (Pantry)&lt;/strong&gt; 🗄️ (chính là Cơ sở dữ liệu MySQL) để lưu trữ, thêm, sửa, và xóa &amp;ldquo;nguyên liệu&amp;rdquo; (dữ liệu).&lt;/p&gt;&#xA;&lt;p&gt;Chúng ta sẽ xây dựng một hệ thống quản lý &amp;ldquo;Người dùng&amp;rdquo; (User) với đầy đủ 4 hoạt động:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

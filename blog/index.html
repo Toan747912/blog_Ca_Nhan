@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Blogs | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    
+    
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white tracking-tight text-center">
+        Blog Lập Trình
+    </h1>
+    
+
+    
+    <div class="mt-12 mb-8 p-6 bg-white/30 dark:bg-dark-card/40 backdrop-blur-lg border border-white/50 dark:border-dark-border rounded-2xl shadow-lg">
+        <h3 class="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-dark-text-primary">Lọc bài viết theo chủ đề</h3>
+        <div class="flex flex-wrap justify-center gap-3">
+            
+            <button data-filter="all" class="filter-btn active-filter bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full transition duration-200 ease-in-out hover:scale-105">
+                Tất cả
+            </button>
+            
+            
+                <button data-filter="java" class="filter-btn bg-blue-100/70 text-blue-900 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900/70 dark:text-blue-200 transition duration-200 ease-in-out hover:scale-105 hover:bg-blue-200 dark:hover:bg-blue-800">
+                    Java <span class="ml-1 opacity-75">(5)</span>
+                </button>
+            
+                <button data-filter="javascript" class="filter-btn bg-blue-100/70 text-blue-900 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900/70 dark:text-blue-200 transition duration-200 ease-in-out hover:scale-105 hover:bg-blue-200 dark:hover:bg-blue-800">
+                    JavaScript <span class="ml-1 opacity-75">(4)</span>
+                </button>
+            
+                <button data-filter="node.js" class="filter-btn bg-blue-100/70 text-blue-900 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900/70 dark:text-blue-200 transition duration-200 ease-in-out hover:scale-105 hover:bg-blue-200 dark:hover:bg-blue-800">
+                    Node.js <span class="ml-1 opacity-75">(2)</span>
+                </button>
+            
+                <button data-filter="websocket" class="filter-btn bg-blue-100/70 text-blue-900 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900/70 dark:text-blue-200 transition duration-200 ease-in-out hover:scale-105 hover:bg-blue-200 dark:hover:bg-blue-800">
+                    WebSocket <span class="ml-1 opacity-75">(1)</span>
+                </button>
+            
+        </div>
+    </div>
+
+    
+    <div id="posts-container" class="mt-12">
+        
+        <div id="no-results-message" class="hidden text-center py-12">
+            <p class="text-2xl font-semibold text-gray-700 dark:text-gray-300">Không tìm thấy bài viết nào</p>
+            <p class="mt-2 text-gray-500 dark:text-gray-400">Vui lòng thử chọn một chủ đề khác.</p>
+        </div>
+
+        
+        <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            
+                
+
+
+
+    
+
+    
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="javascript node.js websocket">
+    <a href="https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/websockets-nodejs.png" 
+             alt="Ảnh đại diện cho bài viết &#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/javascript" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-800">
+                        JavaScript
+                    </a>
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/node.js" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-100 hover:bg-emerald-200 dark:hover:bg-emerald-800">
+                        Node.js
+                    </a>
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/websocket" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-100 hover:bg-indigo-200 dark:hover:bg-indigo-800">
+                        WebSocket
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    &#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="javascript node.js">
+    <a href="https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/nodejs-express.png" 
+             alt="Ảnh đại diện cho bài viết Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/javascript" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-800">
+                        JavaScript
+                    </a>
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/node.js" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-100 hover:bg-emerald-200 dark:hover:bg-emerald-800">
+                        Node.js
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="javascript">
+    <a href="https://ngoquctoan0908.github.io/blog/gui-yeu-cau-http-voi-fetch-api/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/fetch-api.png" 
+             alt="Ảnh đại diện cho bài viết &#39;Người phục vụ&#39; Gửi Đơn hàng: Làm chủ Fetch API (GET, POST)">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/javascript" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-800">
+                        JavaScript
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/gui-yeu-cau-http-voi-fetch-api/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    &#39;Người phục vụ&#39; Gửi Đơn hàng: Làm chủ Fetch API (GET, POST)
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="javascript">
+    <a href="https://ngoquctoan0908.github.io/blog/javascript-va-mang-client-server/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/js-client-server.png" 
+             alt="Ảnh đại diện cho bài viết JavaScript và Mạng: Quyền năng ở Cả Hai Đầu Dây">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/javascript" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-800">
+                        JavaScript
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/javascript-va-mang-client-server/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    JavaScript và Mạng: Quyền năng ở Cả Hai Đầu Dây
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="java">
+    <a href="https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/spring-boot-mysql.png" 
+             alt="Ảnh đại diện cho bài viết Xây dựng Kho hàng API: CRUD hoàn chỉnh với Spring Boot &amp; MySQL">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/java" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 hover:bg-red-200 dark:hover:bg-red-800">
+                        Java
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    Xây dựng Kho hàng API: CRUD hoàn chỉnh với Spring Boot &amp; MySQL
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="java">
+    <a href="https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/java-spring-boot-api.png" 
+             alt="Ảnh đại diện cho bài viết Nâng cấp Đường ống: Giới thiệu REST API và xây dựng API đầu tiên với Spring Boot">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/java" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 hover:bg-red-200 dark:hover:bg-red-800">
+                        Java
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    Nâng cấp Đường ống: Giới thiệu REST API và xây dựng API đầu tiên với Spring Boot
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="java">
+    <a href="https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/java-udp.png" 
+             alt="Ảnh đại diện cho bài viết Tìm hiểu UDP Sockets trong Java: Gửi Bưu thiếp Siêu tốc">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/java" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 hover:bg-red-200 dark:hover:bg-red-800">
+                        Java
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    Tìm hiểu UDP Sockets trong Java: Gửi Bưu thiếp Siêu tốc
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="java">
+    <a href="https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/java-tcp-chat.png" 
+             alt="Ảnh đại diện cho bài viết Xây dựng Ứng dụng Chat Hai chiều (Client-Server) với Java Sockets">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/java" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 hover:bg-red-200 dark:hover:bg-red-800">
+                        Java
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    Xây dựng Ứng dụng Chat Hai chiều (Client-Server) với Java Sockets
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+                
+
+
+
+    
+
+
+
+<article class="post-card flex flex-col rounded-lg shadow-lg overflow-hidden dark:border dark:border-gray-700 transition-transform duration-300 hover:scale-[1.02]" data-categories="java">
+    <a href="https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/" class="block flex-shrink-0">
+        
+        <img class="h-56 w-full object-cover object-center" 
+             src="/images/blog/java-net.png" 
+             alt="Ảnh đại diện cho bài viết Nhập môn Lập trình Mạng với Java">
+    </a>
+    
+    <div class="flex-1 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            
+            <div class="text-sm font-medium flex flex-wrap gap-2">
+                
+                    
+                    
+                    
+                        
+                    
+                    <a href="/categories/java" class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium transition-colors duration-200 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 hover:bg-red-200 dark:hover:bg-red-800">
+                        Java
+                    </a>
+                
+            </div>
+            
+            
+            <a href="https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/" class="block mt-4 group">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white group-hover:underline">
+                    Nhập môn Lập trình Mạng với Java
+                </h3>
+
+            </a>
+        </div>
+        
+        
+        <div class="mt-6 flex items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <time datetime="2025-10-26">
+                    October 26, 2025
+                </time>
+            </div>
+        </div>
+    </div>
+</article>
+
+            
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const postCards = document.querySelectorAll('.post-card');
+    const postsGrid = document.getElementById('posts-grid');
+    const noResultsMessage = document.getElementById('no-results-message');
+
+    
+    const activeClasses = ['active-filter', 'bg-blue-600', 'text-white'];
+    const inactiveClasses = ['bg-blue-100/70', 'text-blue-900', 'dark:bg-blue-900/70', 'dark:text-blue-200', 'hover:bg-blue-200', 'dark:hover:bg-blue-800'];
+    const activeInactiveClasses = ['bg-blue-100/70', 'text-blue-900', 'dark:bg-blue-900/70', 'dark:text-blue-200', 'hover:bg-blue-200', 'dark:hover:bg-blue-800'];
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const filter = this.dataset.filter;
+            let visibleCount = 0;
+
+            
+            filterButtons.forEach(btn => {
+                btn.classList.remove(...activeClasses);
+                btn.classList.add(...inactiveClasses);
+            });
+            this.classList.add(...activeClasses);
+            this.classList.remove(...activeInactiveClasses);
+
+            
+            postCards.forEach(card => {
+                const categories = card.dataset.categories || '';
+                const hasCategory = categories.split(' ').includes(filter);
+
+                if (filter === 'all' || hasCategory) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            
+            if (visibleCount === 0) {
+                postsGrid.classList.add('hidden');
+                noResultsMessage.classList.remove('hidden');
+            } else {
+                postsGrid.classList.remove('hidden');
+                noResultsMessage.classList.add('hidden');
+            }
+        });
+    });
+});
+</script>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

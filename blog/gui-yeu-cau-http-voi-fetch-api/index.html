@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>&#39;Người phục vụ&#39; Gửi Đơn hàng: Làm chủ Fetch API (GET, POST) | Blog | Ngô Quốc Toàn</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'dark-bg': '#0f172a', 
+                        'dark-card': '#1e293b', 
+                        'dark-border': '#334155', 
+                        'dark-text-primary': '#f1f5f9', 
+                        'dark-text-secondary': '#94a3b8', 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body class="min-h-screen text-gray-900 dark:text-dark-text-primary transition-colors duration-300">
+    <div class="flex flex-col min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-indigo-900 p-4 md:p-8">
+        
+        
+        <header class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            Ngô Quốc Toàn
+        </a>
+
+        
+        <div class="flex items-center space-x-5 sm:space-x-8">
+            
+            
+            <div class="hidden sm:flex items-center space-x-6">
+                
+                    <a href="/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Trang Chủ
+                    </a>
+                
+                    <a href="/blog/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              
+                                text-blue-600 dark:text-blue-400 font-semibold
+                              ">
+                        Blog
+                    </a>
+                
+                    <a href="/about/" 
+                       class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                              ">
+                        Profile
+                    </a>
+                
+            </div>
+
+            
+            <button id="dark-mode-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <span class="sr-only">Bật/Tắt Chế độ Tối</span>
+                
+                <svg class="w-5 h-5 light-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.464A1 1 0 106.465 13.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.465 6.95A1 1 0 115.05 5.536l.707-.707A1 1 0 016.464 6.23l-.707.707z"></path></svg>
+                
+                <svg class="w-5 h-5 dark-icon hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+
+            
+            
+        </div>
+    </nav>
+</header>
+
+        
+        <main class="flex-grow">
+            
+<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        
+        
+        <article class="flex-1 min-w-0">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                &#39;Người phục vụ&#39; Gửi Đơn hàng: Làm chủ Fetch API (GET, POST)
+            </h1>
+            
+            <div class="flex items-center space-x-4 text-gray-500 dark:text-gray-400 mb-8">
+                <span>October 26, 2025</span>
+                <span>&middot;</span>
+                
+                <span>JavaScript</span>
+                
+            </div>
+
+            <div class="prose prose-lg lg:prose-xl dark:prose-invert max-w-none">
+                <p>Bạn đã xây dựng một &ldquo;Nhà bếp&rdquo; (Spring Boot API) xịn sò. Giờ là lúc dạy cho &ldquo;Người phục vụ&rdquo; (JavaScript) cách gửi đơn hàng (Requests) đến đó.</p>
+<p><strong>Fetch API</strong> chính là cuốn <strong>sổ ghi đơn hàng (Order Pad)</strong> 📝 hiện đại, được tích hợp sẵn trong mọi trình duyệt. Nó cho phép &ldquo;Người phục vụ&rdquo; (JS) gửi yêu cầu đến &ldquo;Bếp&rdquo; (Server) và xử lý &ldquo;món ăn&rdquo; (Data) khi nó được trả về.</p>
+<h3 id="1-vấn-đề-lớn-nhất"><em>1. Vấn đề Lớn nhất: &ldquo;Giấy hẹn&rdquo; (The Promise)</em></h3>
+<p>Hãy tưởng tượng bạn gọi một món ăn.</p>
+<ul>
+<li><strong>Đồng bộ (Synchronous):</strong> (Cách làm tệ) &ldquo;Người phục vụ&rdquo; gửi đơn hàng, và <strong>đứng đơ tại quầy bếp</strong> 🥶, không làm gì khác cho đến khi món ăn ra. Nếu bếp làm mất 30 giây, cả nhà hàng (trang web của bạn) bị đứng hình 30 giây.</li>
+<li><strong>Bất đồng bộ (Asynchronous):</strong> (Cách của Fetch) &ldquo;Người phục vụ&rdquo; gửi đơn hàng. Bếp không đưa món ăn ngay. Thay vào đó, Bếp đưa cho bạn một <strong>&ldquo;Giấy hẹn&rdquo; (Promise)</strong> 🔔.</li>
+</ul>
+<p>&ldquo;Giấy hẹn&rdquo; này hứa một trong hai điều:</p>
+<ol>
+<li><strong>Fulfilled (Thành công):</strong> &ldquo;Món ăn đã sẵn sàng! 🍲&rdquo;</li>
+<li><strong>Rejected (Thất bại):</strong> &ldquo;Xin lỗi, bếp hết nguyên liệu! ❌&rdquo;</li>
+</ol>
+<p>JavaScript nhận &ldquo;Giấy hẹn&rdquo; này và tiếp tục làm việc khác (giữ cho trang web mượt mà). Nó chỉ xử lý món ăn khi &ldquo;Giấy hẹn&rdquo; reo.</p>
+<p>Đây là lý do tại sao bạn thấy <code>.then()</code> (khi thành công) và <code>.catch()</code> (khi thất bại).</p>
+<h3 id="2-cách-1-lấy-dữ-liệu-get--"><em>2. Cách 1: Lấy Dữ liệu (GET) - &ldquo;Cho tôi xem Món số 5!&rdquo;</em></h3>
+<p>Đây là yêu cầu đơn giản nhất. &ldquo;Người phục vụ&rdquo; chỉ cần nói tên món. Chúng ta sẽ dùng API <code>GET /api/users</code> mà bạn đã tạo ở bài Spring Boot.</p>
+<h4 id="a-cú-pháp-truyền-thống"><em>A. Cú pháp truyền thống <code>.then()</code> (Cầm &ldquo;Giấy hẹn&rdquo; và Chờ)</em></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// File script.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ: Đang gửi đơn hàng GET...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Gửi đơn hàng (fetch)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:8080/api/users&#39;</span>) <span style="color:#75715e">// URL của Bếp Spring Boot
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. KHI &#34;Giấy hẹn&#34; đầu tiên reo (Response đã về)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// &#34;response&#34; là cái &#34;khay thức ăn&#34; Bếp đưa ra,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// nó vẫn còn bọc màng bọc thực phẩm (raw data).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Kiểm tra xem Bếp có báo OK không (HTTP 200-299)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Bếp báo lỗi: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;Món ăn&#34; (data) đang ở dạng JSON (văn bản).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// Phải &#34;mở màng bọc&#34; (response.json()) để biến nó thành
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// một đối tượng JavaScript mà ta ăn được.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// *Việc &#34;mở&#34; này cũng mất thời gian, nên nó lại trả về
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// một &#34;Giấy hẹn&#34; thứ hai!*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(); 
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. KHI &#34;Giấy hẹn&#34; thứ hai reo (Món ăn đã được mở)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// &#34;data&#34; bây giờ là một MẢNG các đối tượng User!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ: Món ăn đã về!&#34;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Giờ bạn có thể dùng data để cập nhật HTML
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userList</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;user-list&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">user</span> =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">li</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;li&#39;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">li</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">email</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">userList</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">li</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 4. NẾU bất kỳ &#34;Giấy hẹn&#34; nào báo lỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span> =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Phục vụ: Thất bại!&#34;</span>, <span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ: Đã gửi đơn. Đang làm việc khác trong khi chờ...&#34;</span>);
+</span></span></code></pre></div><h4 id="b-cú-pháp-hiện-đại"><em>B. Cú pháp hiện đại <code>async/await</code> (Cách &ldquo;Đứng chờ&rdquo; thanh lịch)</em></h4>
+<p>Cú pháp <code>.then()</code> hơi rắc rối vì phải lồng nhau. <code>async/await</code> là cách viết &ldquo;sạch&rdquo; hơn, giúp code bất đồng bộ trông như đồng bộ, nhưng không làm đứng hình trang web.</p>
+<p><strong>Phép loại suy:</strong></p>
+<ul>
+<li><code>async</code>: Đánh dấu cho JavaScript: &ldquo;Hàm này là một Người phục vụ đặc biệt, có khả năng chờ.&rdquo;</li>
+<li><code>await</code>: Lệnh &ldquo;🧘 Đứng chờ ngay tại đây (nhưng không làm phiền người khác) cho đến khi &ldquo;Giấy hẹn&rdquo; reo.&rdquo;</li>
+</ul>
+<p>Đây là cùng một yêu cầu GET ở trên, viết lại bằng <code>async/await</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Phải đặt code này bên trong một hàm &#34;async&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fetchUsers</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ (Async): Đang gửi đơn...&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. (await) Đứng chờ 🧘 cho đến khi &#34;khay thức ăn&#34; (response) về
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:8080/api/users&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 2. Kiểm tra lỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Bếp báo lỗi: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3. (await) Đứng chờ 🧘 lần nữa để &#34;mở màng bọc&#34; (response.json())
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 4. Món ăn đã sẵn sàng!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ (Async): Món đã về!&#34;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Cập nhật HTML (giống như trên)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userList</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;user-list&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">userList</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>; <span style="color:#75715e">// Xóa danh sách cũ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">user</span> =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">li</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;li&#39;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">li</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">email</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">userList</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">li</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 5. NẾU một trong hai lần &#34;await&#34; thất bại,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// nó sẽ nhảy vào đây
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Phục vụ (Async): Thất bại!&#34;</span>, <span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gọi hàm để chạy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">fetchUsers</span>();
+</span></span></code></pre></div><h3 id="3-cách-2-gửi-dữ-liệu-post--"><em>3. Cách 2: Gửi Dữ liệu (POST) - &ldquo;Thêm Món mới vào Menu!&rdquo;</em></h3>
+<p>Đây là lúc chúng ta thực sự kết nối với API Spring Boot <code>POST /api/users</code>. &ldquo;Người phục vụ&rdquo; (Fetch) không chỉ hỏi, mà còn phải gửi kèm một &ldquo;công thức&rdquo; (dữ liệu JSON) cho &ldquo;Bếp&rdquo; (Server).</p>
+<p><strong>Vấn đề:</strong> Mạng Internet (đường dây điện thoại đến Bếp) chỉ có thể gửi văn bản (text). Bạn không thể gửi một &ldquo;Đối tượng JavaScript&rdquo; (JavaScript Object). <strong>Giải pháp:</strong> <code>JSON.stringify()</code></p>
+<p><strong>Phép loại suy:</strong> <code>JSON.stringify()</code> là hành động &ldquo;viết ý tưởng (Object) của bạn ra một tờ giấy (String) theo cú pháp JSON&rdquo; mà &ldquo;Bếp&rdquo; có thể đọc được.</p>
+<p>Hãy xem cách chúng ta gửi một <code>newUser</code> đến Bếp:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Chuẩn bị &#34;công thức&#34; (JS Object)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newUser</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Trần Văn B&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;b@gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Hàm này sẽ gửi &#34;công thức&#34; đi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createUser</span>(<span style="color:#a6e22e">userData</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ: Đang gửi &#39;công thức&#39; món mới...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 2. Gửi đơn hàng (fetch), lần này với &#34;Tùy chọn&#34; (options)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:8080/api/users&#39;</span>, {
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2a. Phương thức: &#34;Đây là đơn TẠO MỚI (POST)&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>, 
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2b. Tiêu đề: &#34;Ghi chú cho Bếp&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// &#34;Bếp ơi, &#39;công thức&#39; (body) tôi gửi kèm là
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// được viết bằng ngôn ngữ JSON nhé!&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// (Spring Boot @RequestBody cần cái này)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2c. Thân (Nội dung chính):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// &#34;Biến &#39;công thức&#39; (Object) thành &#39;tờ giấy&#39; (String)&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">userData</span>) 
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3. Kiểm tra xem Bếp có nhận không
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Bếp từ chối công thức: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 4. Nhận lại &#34;món ăn&#34; (User MỚI) mà Bếp vừa tạo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// (Spring Boot POST API của chúng ta trả về User đã tạo)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createdUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Phục vụ: Bếp đã tạo xong món!&#34;</span>, <span style="color:#a6e22e">createdUser</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// (Bạn có thể gọi lại hàm fetchUsers() ở trên để làm mới DS)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">fetchUsers</span>(); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Phục vụ: Gửi &#39;công thức&#39; thất bại!&#34;</span>, <span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Giả sử bạn có một cái nút (button)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// document.getElementById(&#39;btn-add-user&#39;).onclick = () =&gt; {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     createUser(newUser);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// };
+</span></span></span></code></pre></div><h3 id="tóm-tắt-nhanh">Tóm tắt nhanh</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Bạn muốn&hellip;</th>
+          <th style="text-align: left"><code>fetch()</code> làm gì&hellip;</th>
+          <th style="text-align: left">Phép loại suy (Peyman)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Lấy dữ liệu</td>
+          <td style="text-align: left"><code>fetch('/api/url')</code> (Mặc định là GET)</td>
+          <td style="text-align: left">&ldquo;Cho tôi xem món này.&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Gửi dữ liệu</td>
+          <td style="text-align: left"><code>fetch('/api/url', { method: 'POST', ... })</code></td>
+          <td style="text-align: left">&ldquo;Thêm món mới này vào menu.&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Xử lý bất đồng bộ</td>
+          <td style="text-align: left">Dùng <code>.then().catch()</code></td>
+          <td style="text-align: left">Cầm &ldquo;Giấy hẹn&rdquo; 🔔 và chờ nó reo.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Xử lý (cách tốt hơn)</td>
+          <td style="text-align: left">Dùng <code>async/await</code> + <code>try...catch</code></td>
+          <td style="text-align: left">&ldquo;Đứng chờ&rdquo; 🧘 tại quầy (nhưng không cản đường).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Gửi JSON</td>
+          <td style="text-align: left"><code>body: JSON.stringify(obj)</code></td>
+          <td style="text-align: left">&ldquo;Viết ý tưởng (Object) ra giấy (String)&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Đọc JSON</td>
+          <td style="text-align: left"><code>const data = await response.json()</code></td>
+          <td style="text-align: left">&ldquo;Mở màng bọc&rdquo; 🍲 món ăn Bếp đưa ra.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Giờ đây, &ldquo;Người phục vụ&rdquo; (JavaScript) của bạn đã biết đầy đủ cách giao tiếp với &ldquo;Nhà bếp&rdquo; (Spring Boot), cho phép bạn xây dựng các ứng dụng web động hoàn chỉnh!</p>
+
+            </div>
+        </article>
+
+        
+        
+        
+        <aside class="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0">
+            <div class="sticky top-24 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mục lục</h3>
+                <nav class="toc">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-vấn-đề-lớn-nhất"><em>1. Vấn đề Lớn nhất: “Giấy hẹn” (The Promise)</em></a></li>
+        <li><a href="#2-cách-1-lấy-dữ-liệu-get--"><em>2. Cách 1: Lấy Dữ liệu (GET) - “Cho tôi xem Món số 5!”</em></a></li>
+        <li><a href="#3-cách-2-gửi-dữ-liệu-post--"><em>3. Cách 2: Gửi Dữ liệu (POST) - “Thêm Món mới vào Menu!”</em></a></li>
+        <li><a href="#tóm-tắt-nhanh">Tóm tắt nhanh</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        
+
+    </div>
+</div>
+
+        </main>
+
+        
+        <footer class="bg-transparent border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            
+            © 2025 Ngô Quốc Toàn. Đã đăng ký bản quyền.
+        </p>
+    </div>
+</footer>
+    </div>
+
+    
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>
