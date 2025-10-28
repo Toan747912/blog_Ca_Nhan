@@ -2,56 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/</loc>
+    <loc>http://localhost:1313/blog/nhap-mon-lap-trinh-mang-java/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/</loc>
+    <loc>http://localhost:1313/blog/xay-dung-chat-app-tcp-sockets/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/</loc>
+    <loc>http://localhost:1313/blog/tim-hieu-udp-sockets-java/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/</loc>
+    <loc>http://localhost:1313/blog/gioi-thieu-restful-api-spring-boot/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/</loc>
+    <loc>http://localhost:1313/blog/xay-dung-crud-api-spring-boot-mysql/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/javascript-va-mang-client-server/</loc>
+    <loc>http://localhost:1313/blog/javascript-va-mang-client-server/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/gui-yeu-cau-http-voi-fetch-api/</loc>
+    <loc>http://localhost:1313/blog/gui-yeu-cau-http-voi-fetch-api/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/</loc>
+    <loc>http://localhost:1313/blog/xay-dung-server-side-app-nodejs-express/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/</loc>
+    <loc>http://localhost:1313/blog/giao-tiep-realtime-voi-websockets-nodejs/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/categories/java/</loc>
+    <loc>http://localhost:1313/categories/java/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/categories/javascript/</loc>
+    <loc>http://localhost:1313/categories/javascript/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/categories/node.js/</loc>
+    <loc>http://localhost:1313/categories/node.js/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/categories/websocket/</loc>
+    <loc>http://localhost:1313/categories/websocket/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>https://ngoquctoan0908.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

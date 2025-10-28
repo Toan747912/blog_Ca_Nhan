@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Blog | Ngô Quốc Toàn</title>
-    <link>https://ngoquctoan0908.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Blog | Ngô Quốc Toàn</description>
     <generator>Hugo</generator>
     <language>vi-VN</language>
     <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ngoquctoan0908.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java</title>
-      <link>https://ngoquctoan0908.github.io/categories/java/</link>
+      <link>http://localhost:1313/categories/java/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/categories/java/</guid>
+      <guid>http://localhost:1313/categories/java/</guid>
       <description></description>
     </item>
     <item>
       <title>JavaScript</title>
-      <link>https://ngoquctoan0908.github.io/categories/javascript/</link>
+      <link>http://localhost:1313/categories/javascript/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/categories/javascript/</guid>
+      <guid>http://localhost:1313/categories/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>Node.js</title>
-      <link>https://ngoquctoan0908.github.io/categories/node.js/</link>
+      <link>http://localhost:1313/categories/node.js/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/categories/node.js/</guid>
+      <guid>http://localhost:1313/categories/node.js/</guid>
       <description></description>
     </item>
     <item>
       <title>WebSocket</title>
-      <link>https://ngoquctoan0908.github.io/categories/websocket/</link>
+      <link>http://localhost:1313/categories/websocket/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/categories/websocket/</guid>
+      <guid>http://localhost:1313/categories/websocket/</guid>
       <description></description>
     </item>
   </channel>

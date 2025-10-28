@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Blog | Ngô Quốc Toàn</title>
-    <link>https://ngoquctoan0908.github.io/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content in Blogs on Blog | Ngô Quốc Toàn</description>
     <generator>Hugo</generator>
     <language>vi-VN</language>
     <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ngoquctoan0908.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nhập môn Lập trình Mạng với Java</title>
-      <link>https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/</link>
+      <link>http://localhost:1313/blog/nhap-mon-lap-trinh-mang-java/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/nhap-mon-lap-trinh-mang-java/</guid>
+      <guid>http://localhost:1313/blog/nhap-mon-lap-trinh-mang-java/</guid>
       <description>&lt;h2 id=&#34;1-ý-tưởng-cốt-lõi-lập-trình-mạng-là-gì&#34;&gt;&lt;strong&gt;1. Ý tưởng Cốt lõi: Lập trình Mạng là gì?&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Trước khi nói về code, hãy tưởng tượng Lập trình Mạng giống như việc bạn &lt;em&gt;&lt;strong&gt;dạy cho hai máy tính cách nói chuyện với nhau&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Giống như con người, để nói chuyện, chúng cần:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Một &lt;em&gt;&lt;strong&gt;ngôn ngữ chung&lt;/strong&gt;&lt;/em&gt; (Giống như tiếng Việt, tiếng Anh).&lt;/li&gt;&#xA;&lt;li&gt;Một &lt;em&gt;&lt;strong&gt;cách thức liên lạc&lt;/strong&gt;&lt;/em&gt; (Như gọi điện thoại, gửi thư tay, hay nói chuyện trực tiếp).&lt;/li&gt;&#xA;&lt;li&gt;Một &lt;em&gt;&lt;strong&gt;địa chỉ&lt;/strong&gt;&lt;/em&gt; để tìm thấy nhau (Như địa chỉ nhà hay số điện thoại).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Lập trình mạng là việc bạn viết ra các chỉ dẫn (code) để thiết lập tất cả những quy tắc này, cho phép các chương trình trên các máy tính khác nhau trao đổi thông tin qua Internet hoặc mạng nội bộ.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Xây dựng Ứng dụng Chat Hai chiều (Client-Server) với Java Sockets</title>
-      <link>https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/</link>
+      <link>http://localhost:1313/blog/xay-dung-chat-app-tcp-sockets/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/xay-dung-chat-app-tcp-sockets/</guid>
+      <guid>http://localhost:1313/blog/xay-dung-chat-app-tcp-sockets/</guid>
       <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span class=&#34;text-green&#34;&gt;Bạn đã bao giờ tự hỏi làm thế nào các ứng dụng như Messenger, Zalo hay game online có thể gửi tin nhắn qua lại ngay lập tức?&lt;/span&gt;&lt;/strong&gt;&lt;/em&gt; 🚀&lt;/p&gt;&#xA;&lt;p&gt;Hôm nay, chúng ta sẽ lột trần &amp;ldquo;phép thuật&amp;rdquo; đó. Chúng ta sẽ xây dựng một hệ thống điện thoại tư nhân đơn giản chỉ bằng Java.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;Ý tưởng cốt lõi (Theo phương pháp Peyman):&lt;/strong&gt;&lt;/em&gt; Để hai máy tính nói chuyện, chúng ta cần thiết lập một cuộc gọi điện thoại 📞.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tìm hiểu UDP Sockets trong Java: Gửi Bưu thiếp Siêu tốc</title>
-      <link>https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/</link>
+      <link>http://localhost:1313/blog/tim-hieu-udp-sockets-java/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/tim-hieu-udp-sockets-java/</guid>
+      <guid>http://localhost:1313/blog/tim-hieu-udp-sockets-java/</guid>
       <description>&lt;p&gt;Bạn đã biết về TCP Sockets—giống như một cuộc gọi điện thoại 📞. Nó đáng tin cậy, có trật tự, nhưng lại &amp;ldquo;nặng nề&amp;rdquo; và tốn thời gian thiết lập.&lt;/p&gt;&#xA;&lt;p&gt;Bây giờ, hãy làm quen với &amp;ldquo;người anh em&amp;rdquo; nhanh nhẹn nhưng&amp;hellip; hơi cẩu thả của nó: &lt;strong&gt;UDP&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;ý-tưởng-cốt-lõi-theo-phương-pháp-peyman-udp-user-datagram-protocol-giống-hệt-như-việc-bạn-gửi-một-tấm&#34;&gt;&lt;em&gt;Ý tưởng cốt lõi (Theo phương pháp Peyman): UDP (User Datagram Protocol) giống hệt như việc bạn gửi một tấm &lt;strong&gt;bưu thiếp (postcard)&lt;/strong&gt; ✉️.&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Không kết nối:&lt;/strong&gt; Bạn không cần gọi điện để &amp;ldquo;thiết lập cuộc gọi&amp;rdquo; trước. Bạn chỉ cần viết địa chỉ người nhận lên bưu thiếp và&amp;hellip; gửi.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Nhanh và nhẹ:&lt;/strong&gt; Không cần &amp;ldquo;alo&amp;rdquo;, không cần &amp;ldquo;tạm biệt&amp;rdquo;. Chỉ cần gửi!&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Không đáng tin cậy:&lt;/strong&gt; Bưu thiếp của bạn có thể bị thất lạc trên đường đi. Bạn sẽ không bao giờ biết trừ khi người nhận gửi lại một tấm bưu thiếp khác.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Không theo thứ tự:&lt;/strong&gt; Nếu bạn gửi 3 tấm bưu thiếp (Tin 1, Tin 2, Tin 3), người nhận có thể nhận được chúng theo thứ tự: Tin 2, Tin 3, Tin 1.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;UDP là lựa chọn hoàn hảo khi &lt;strong&gt;tốc độ là vua&lt;/strong&gt; và việc mất một vài &amp;ldquo;mẩu tin&amp;rdquo; không phải là tận thế.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nâng cấp Đường ống: Giới thiệu REST API và xây dựng API đầu tiên với Spring Boot</title>
-      <link>https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/</link>
+      <link>http://localhost:1313/blog/gioi-thieu-restful-api-spring-boot/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/gioi-thieu-restful-api-spring-boot/</guid>
+      <guid>http://localhost:1313/blog/gioi-thieu-restful-api-spring-boot/</guid>
       <description>&lt;p&gt;Ở các bài trước, chúng ta đã học cách &amp;ldquo;nói chuyện&amp;rdquo; ở mức độ thấp (Socket). Giờ là lúc để &amp;ldquo;nâng cấp&amp;rdquo; lên một kiến trúc cấp cao hơn, nơi chúng ta không còn lo về &lt;code&gt;InputStream&lt;/code&gt; hay &lt;code&gt;DatagramPacket&lt;/code&gt;, mà tập trung vào logic nghiệp vụ.&lt;/p&gt;&#xA;&lt;p&gt;Chào mừng bạn đến với &lt;strong&gt;RESTful API&lt;/strong&gt;!&lt;/p&gt;&#xA;&lt;h3 id=&#34;1&#34;&gt;&lt;em&gt;1. &amp;ldquo;Vòi nước&amp;rdquo; REST là gì?&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;p&gt;REST (REpresentational State Transfer) không phải là một ngôn ngữ hay công cụ. Nó là một &lt;strong&gt;&amp;ldquo;phong cách thiết kế&amp;rdquo;&lt;/strong&gt; hay một bộ quy tắc để thiết kế các &amp;ldquo;vòi nước&amp;rdquo; (API) sao cho chúng thật đơn giản, dễ hiểu và dễ sử dụng.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Xây dựng Kho hàng API: CRUD hoàn chỉnh với Spring Boot &amp; MySQL</title>
-      <link>https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/</link>
+      <link>http://localhost:1313/blog/xay-dung-crud-api-spring-boot-mysql/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/xay-dung-crud-api-spring-boot-mysql/</guid>
+      <guid>http://localhost:1313/blog/xay-dung-crud-api-spring-boot-mysql/</guid>
       <description>&lt;p&gt;Ở bài trước, chúng ta đã xây dựng một &amp;ldquo;Nhà hàng&amp;rdquo; (Spring Boot) với một &amp;ldquo;Người phục vụ&amp;rdquo; (@RestController) chỉ biết nói &amp;ldquo;Hello, World!&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;Giờ là lúc nâng cấp! Một nhà hàng thực thụ cần có một &lt;strong&gt;&amp;ldquo;Kho hàng&amp;rdquo; (Pantry)&lt;/strong&gt; 🗄️ (chính là Cơ sở dữ liệu MySQL) để lưu trữ, thêm, sửa, và xóa &amp;ldquo;nguyên liệu&amp;rdquo; (dữ liệu).&lt;/p&gt;&#xA;&lt;p&gt;Chúng ta sẽ xây dựng một hệ thống quản lý &amp;ldquo;Người dùng&amp;rdquo; (User) với đầy đủ 4 hoạt động:&lt;/p&gt;</description>
     </item>
     <item>
       <title>JavaScript và Mạng: Quyền năng ở Cả Hai Đầu Dây</title>
-      <link>https://ngoquctoan0908.github.io/blog/javascript-va-mang-client-server/</link>
+      <link>http://localhost:1313/blog/javascript-va-mang-client-server/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/javascript-va-mang-client-server/</guid>
+      <guid>http://localhost:1313/blog/javascript-va-mang-client-server/</guid>
       <description>&lt;p&gt;JavaScript là ngôn ngữ độc nhất vô nhị. Nó là ngôn ngữ duy nhất mà trình duyệt web (Client) có thể hiểu được. Nhưng vào năm 2009, một thứ gọi là &lt;strong&gt;Node.js&lt;/strong&gt; ra đời, và nó đã làm một điều điên rồ: Nó &amp;ldquo;bẻ khóa&amp;rdquo; JavaScript ra khỏi trình duyệt và cho phép nó chạy ở&amp;hellip; &lt;strong&gt;&amp;ldquo;Khu bếp&amp;rdquo; (Server)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Hãy xem JavaScript đảm nhận hai vai trò này như thế nào.&lt;/p&gt;</description>
     </item>
     <item>
       <title>&#39;Người phục vụ&#39; Gửi Đơn hàng: Làm chủ Fetch API (GET, POST)</title>
-      <link>https://ngoquctoan0908.github.io/blog/gui-yeu-cau-http-voi-fetch-api/</link>
+      <link>http://localhost:1313/blog/gui-yeu-cau-http-voi-fetch-api/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/gui-yeu-cau-http-voi-fetch-api/</guid>
+      <guid>http://localhost:1313/blog/gui-yeu-cau-http-voi-fetch-api/</guid>
       <description>&lt;p&gt;Bạn đã xây dựng một &amp;ldquo;Nhà bếp&amp;rdquo; (Spring Boot API) xịn sò. Giờ là lúc dạy cho &amp;ldquo;Người phục vụ&amp;rdquo; (JavaScript) cách gửi đơn hàng (Requests) đến đó.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Fetch API&lt;/strong&gt; chính là cuốn &lt;strong&gt;sổ ghi đơn hàng (Order Pad)&lt;/strong&gt; 📝 hiện đại, được tích hợp sẵn trong mọi trình duyệt. Nó cho phép &amp;ldquo;Người phục vụ&amp;rdquo; (JS) gửi yêu cầu đến &amp;ldquo;Bếp&amp;rdquo; (Server) và xử lý &amp;ldquo;món ăn&amp;rdquo; (Data) khi nó được trả về.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Xây dựng Nhà bếp JavaScript: Server đầu tiên với Node.js và Express</title>
-      <link>https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/</link>
+      <link>http://localhost:1313/blog/xay-dung-server-side-app-nodejs-express/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/xay-dung-server-side-app-nodejs-express/</guid>
+      <guid>http://localhost:1313/blog/xay-dung-server-side-app-nodejs-express/</guid>
       <description>&lt;p&gt;Chúng ta sẽ xây dựng một &amp;ldquo;Nhà bếp&amp;rdquo; (Server) bằng JavaScript, sẵn sàng nhận &amp;ldquo;Đơn hàng&amp;rdquo; (HTTP Requests) từ &amp;ldquo;Người phục vụ&amp;rdquo; (Fetch API) mà chúng ta đã học.&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-bước-1-xin&#34;&gt;&lt;em&gt;1. Bước 1: Xin &amp;ldquo;Giấy phép Kinh doanh&amp;rdquo; (Khởi tạo dự án Node.js)&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;p&gt;Trước khi thuê &amp;ldquo;Trợ lý&amp;rdquo;, bạn cần đăng ký &amp;ldquo;Nhà hàng&amp;rdquo; của mình.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Tạo một thư mục mới cho dự án: &lt;code&gt;mkdir my-express-server&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Đi vào thư mục đó: &lt;code&gt;cd my-express-server&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Chạy lệnh sau:&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm init -y&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Giải thích (Peyman):&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>&#39;Bỏ Bồi bàn, Lắp Điện thoại!&#39;: Giao tiếp Real-time với WebSockets và Node.js</title>
-      <link>https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/</link>
+      <link>http://localhost:1313/blog/giao-tiep-realtime-voi-websockets-nodejs/</link>
       <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://ngoquctoan0908.github.io/blog/giao-tiep-realtime-voi-websockets-nodejs/</guid>
+      <guid>http://localhost:1313/blog/giao-tiep-realtime-voi-websockets-nodejs/</guid>
       <description>&lt;p&gt;Ở các bài trước, chúng ta đã xây dựng một &amp;ldquo;Nhà hàng&amp;rdquo; (Server) hoạt động theo kiểu REST API.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Vấn đề của REST API (Kiểu Bồi bàn 🤵):&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Khách (Client) muốn gì, phải gọi Bồi bàn: &amp;ldquo;Cho tôi ly nước!&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Bồi bàn (HTTP Request) chạy vào bếp, lấy nước, mang ra, rồi&amp;hellip; biến mất.&lt;/li&gt;&#xA;&lt;li&gt;Khách muốn thêm đá? Phải gọi Bồi bàn một lần nữa.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Vấn đề lớn nhất:&lt;/strong&gt; Bếp (Server) làm xong món, không thể tự mang ra. Bếp phải chờ Bồi bàn vào hỏi: &amp;ldquo;Món xong chưa?&amp;rdquo;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Đây là kiểu &lt;strong&gt;Hỏi-Đáp (Request-Response)&lt;/strong&gt;. Nó hoạt động, nhưng rất chậm và &amp;ldquo;phiền phức&amp;rdquo; cho các ứng dụng cần liên tục, như Chat, Game, hay xem Tỷ số Trực tiếp.&lt;/p&gt;</description>
     </item>
   </channel>
